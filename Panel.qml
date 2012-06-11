@@ -1,9 +1,10 @@
 import QtQuick 1.1
 
-Image {
+DialogBG {
     id: panel
-    source:"pics/panel.png"
     x: parent.width - width
+    width: 295
+    height: parent.height
 
     property int funds : 1000
     property int unit: 100
@@ -39,49 +40,49 @@ Image {
         ]
     }
 
-    Image {
-        id: rescueButton
-        property bool enableIt: currentCountry!==undefined &&
-                                !currentCountry.rescued && currentCountry.debt > currentCountry.capacity
-        onEnableItChanged: if (enableIt && state=="")
-                               state = "enabled"
-                           else if (!enableIt)
-                               state = "";
+//    Image {
+//        id: rescueButton
+//        property bool enableIt: currentCountry!==undefined &&
+//                                !currentCountry.rescued && currentCountry.debt > currentCountry.capacity
+//        onEnableItChanged: if (enableIt && state=="")
+//                               state = "enabled"
+//                           else if (!enableIt)
+//                               state = "";
 
-        y: 250
-        anchors.horizontalCenter: parent.horizontalCenter
-        source: "pics/butonDisabled.png"
-        states: [
-            State {
-                name: "pressed"
-                PropertyChanges {
-                    target: rescueButton
-                    source: "pics/butonPressed.png"
-                }
-            },
-            State {
-                name: "enabled"
-                PropertyChanges {
-                    target: rescueButton
-                    source: "pics/butonNormal.png"
-                }
-            }
-        ]
-        MouseArea {
-            anchors.fill: parent
-            onPressed: if (parent.state=="enabled") {
-                           parent.state = "pressed"
-                       }
-            onReleased: if (parent.state=="pressed") {
-                            parent.state = "enabled"
-                            if (currentCountry) {
-                                currentCountry.rescued = true;
-                                unit *= 2;
-                                liveCountries--;
-                            }
-                        }
-        }
-    }
+//        y: 250
+//        anchors.horizontalCenter: parent.horizontalCenter
+//        source: "pics/butonDisabled.png"
+//        states: [
+//            State {
+//                name: "pressed"
+//                PropertyChanges {
+//                    target: rescueButton
+//                    source: "pics/butonPressed.png"
+//                }
+//            },
+//            State {
+//                name: "enabled"
+//                PropertyChanges {
+//                    target: rescueButton
+//                    source: "pics/butonNormal.png"
+//                }
+//            }
+//        ]
+//        MouseArea {
+//            anchors.fill: parent
+//            onPressed: if (parent.state=="enabled") {
+//                           parent.state = "pressed"
+//                       }
+//            onReleased: if (parent.state=="pressed") {
+//                            parent.state = "enabled"
+//                            if (currentCountry) {
+//                                currentCountry.rescued = true;
+//                                unit *= 2;
+//                                liveCountries--;
+//                            }
+//                        }
+//        }
+//    }
 
     Text {
         anchors.horizontalCenter: parent.horizontalCenter

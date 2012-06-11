@@ -61,6 +61,7 @@ Image {
 
     SequentialAnimation {
         id: pressAnimation
+        // this is what causes the error QColor::setNamedColor: Unknown color name 'pressed'
         PropertyAction { target:country; property:"state"; value:"pressed"}
         PauseAnimation { duration: 100 }
         PropertyAction { target:country; property:"state"; value:"hovered"}

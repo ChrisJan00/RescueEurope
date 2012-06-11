@@ -27,14 +27,10 @@ Rectangle {
         id: panel
     }
 
-    Rectangle {
+    DialogBG {
         visible: liveCountries == 0;
-        color: "gray"
         width: 400
         height: 200
-        border.width: 1
-        border.color:"#616161"
-        radius: 4
         anchors.centerIn: parent
         z: 10
         Text {
