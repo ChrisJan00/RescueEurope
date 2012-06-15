@@ -70,7 +70,7 @@ DialogBG {
         }
         Text {
             anchors.horizontalCenter: parent.horizontalCenter
-            text: !currentCountry?"":"Budget:";
+            text: !currentCountry?"":"Budget: "+currentCountry.budget+"M €";
             color: root.textColor
         }
         Column {

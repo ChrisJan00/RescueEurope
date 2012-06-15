@@ -11,6 +11,11 @@ DialogBG {
     originalHeight: 200
     property variant currentCountry:null
     property int returned: 0
+    property real healthCuts: 0
+    property real eduCuts: 0
+    property real scienceCuts: 0
+    property real unemplCuts: 0
+    property real pensionCuts: 0
 
     Column {
         id: contents
@@ -32,23 +37,23 @@ DialogBG {
             spacing: 2
             Text {
                 color: textColor
-                text: "Health system: <font color='red'>"+0.2+"%</font>"
+                text: "Health system: <font color='red'>"+healthCuts.toFixed(2)+"%</font>"
             }
             Text {
                 color: textColor
-                text: "Education: <font color='red'>"+0.2+"%</font>"
+                text: "Education: <font color='red'>"+eduCuts.toFixed(2)+"%</font>"
             }
             Text {
                 color: textColor
-                text: "Science/Research: <font color='red'>"+0.2+"%</font>"
+                text: "Science/Research: <font color='red'>"+scienceCuts.toFixed(2)+"%</font>"
             }
             Text {
                 color: textColor
-                text: "Unempl. Benefits: <font color='red'>"+0.2+"%</font>"
+                text: "Unempl. Benefits: <font color='red'>"+unemplCuts.toFixed(2)+"%</font>"
             }
             Text {
                 color: textColor
-                text: "Pension System: <font color='red'>"+0.2+"%</font>"
+                text: "Pension System: <font color='red'>"+pensionCuts.toFixed(2)+"%</font>"
             }
         }
         Button {
@@ -56,7 +61,13 @@ DialogBG {
             id: cancelButton
             label: "Close"
             active: true
-            onClicked: returnDialog.hide();
+            onClicked: {
+                returnDialog.hide();
+                if (currentCountry && currentCountry.budget <= 0) {
+                    rescueDialog.currentCountry = currentCountry;
+                    rescueDialog.show();
+                }
+            }
         }
     }
 }

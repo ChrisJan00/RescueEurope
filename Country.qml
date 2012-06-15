@@ -11,6 +11,7 @@ Image {
     property bool isEuroZone: true
     property int debt: 100
     property int capacity: 1000
+    property int budget: 10
     property real delay: 2
     property real autoDebt: 1.05
     property bool rescued: false
@@ -80,11 +81,15 @@ Image {
             country.z = 0
         }
         onPressed: {
-            if (!rescued)
+            if (!rescued) {
                 country.state = "pressed";
-            if (loanDialog.state=="hidden") {
-                loanDialog.currentCountry = country;
-                loanDialog.show();
+                if (budget > 0 && loanDialog.state=="hidden") {
+                    loanDialog.currentCountry = country;
+                    loanDialog.show();
+                } else if (budget <= 0 && rescueDialog.state=="hidden") {
+                    rescueDialog.currentCountry = country;
+                    rescueDialog.show();
+                }
             }
 //            rescueDialog.show();
 //            if (debt <= capacity && !rescued) {
@@ -190,6 +195,8 @@ Image {
         onTriggered: {
             returnDialog.currentCountry = country;
             returnDialog.returned = toReturn;
+            doCut();
+            budget -= toReturn;
             funds += toReturn;
             debt -= toReturn;
             toReturn = 0;
@@ -197,9 +204,27 @@ Image {
             }
         }
 
-    function returnLoan()
-    {}
+    function doCut()
+    {
+        returnDialog.healthCuts = Math.random() * health;
+        returnDialog.eduCuts = Math.random() * edu;
+        returnDialog.scienceCuts = Math.random() * science;
+        returnDialog.unemplCuts = Math.random() * unempl;
+        returnDialog.pensionCuts = Math.random() * pension;
+        budget *= (100 + returnDialog.healthCuts + returnDialog.eduCuts +
+                returnDialog.scienceCuts + returnDialog.unemplCuts +
+                returnDialog.pensionCuts)/100.0;
+        health -= returnDialog.healthCuts;
+        edu -= returnDialog.eduCuts;
+        science -= returnDialog.scienceCuts;
+        unempl -= returnDialog.unemplCuts;
+        pension -= returnDialog.pensionCuts;
+    }
 
     function rescue()
-    {}
+    {
+        rescued = true;
+        funds += capacity+budget;
+        liveCountries--;
+    }
 }

@@ -10,6 +10,8 @@ DialogBG {
     originalWidth: 350
     originalHeight: 100
 
+    property variant currentCountry : null;
+
     Column {
         id: contents
         anchors.centerIn: parent
@@ -17,12 +19,15 @@ DialogBG {
         Text {
             anchors.horizontalCenter: parent.horizontalCenter
             color: textColor
-            text: "Spain is on the verge of <font color='red'>bankruptcy</red>"
+            text: !currentCountry?"":
+                currentCountry.name + " is on the verge of <font color='red'>bankruptcy</red>"
         }
         Text {
             anchors.horizontalCenter: parent.horizontalCenter
             color: textColor
-            text: "You will earn "+100+"M € with the bailout rescue plan"
+            text: !currentCountry?"":
+                "You will earn "+ (currentCountry.capacity + currentCountry.budget)
+                                   +"M € with the bailout rescue plan"
         }
         Row {
             anchors.horizontalCenter: parent.horizontalCenter
