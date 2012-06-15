@@ -6,6 +6,8 @@ Rectangle {
     width: 800
     height: 600
 
+    property color textColor: "yellow"
+
     ////////////////// PLAYER PROPERTIES
     property alias funds : panel.funds
     property alias unit: panel.unit
@@ -19,12 +21,26 @@ Rectangle {
     }
     ////////////////////
 
+
+
+    Panel {
+        id: panel
+    }
+
     Map {
         id: map
     }
 
-    Panel {
-        id: panel
+    LoanDialog {
+        id: loanDialog
+    }
+
+    RescueDialog {
+        id : rescueDialog
+    }
+
+    ReturnDialog {
+        id: returnDialog
     }
 
     VictoryDialog {

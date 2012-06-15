@@ -3,8 +3,10 @@ import QtQuick 1.1
 DialogBG {
     id: panel
     x: parent.width - width
-    width: 295
     height: parent.height
+    width: 295
+    y: -1
+    visible: true
 
     property int funds : 1000
     property int unit: 100
@@ -40,54 +42,11 @@ DialogBG {
         ]
     }
 
-//    Image {
-//        id: rescueButton
-//        property bool enableIt: currentCountry!==undefined &&
-//                                !currentCountry.rescued && currentCountry.debt > currentCountry.capacity
-//        onEnableItChanged: if (enableIt && state=="")
-//                               state = "enabled"
-//                           else if (!enableIt)
-//                               state = "";
-
-//        y: 250
-//        anchors.horizontalCenter: parent.horizontalCenter
-//        source: "pics/butonDisabled.png"
-//        states: [
-//            State {
-//                name: "pressed"
-//                PropertyChanges {
-//                    target: rescueButton
-//                    source: "pics/butonPressed.png"
-//                }
-//            },
-//            State {
-//                name: "enabled"
-//                PropertyChanges {
-//                    target: rescueButton
-//                    source: "pics/butonNormal.png"
-//                }
-//            }
-//        ]
-//        MouseArea {
-//            anchors.fill: parent
-//            onPressed: if (parent.state=="enabled") {
-//                           parent.state = "pressed"
-//                       }
-//            onReleased: if (parent.state=="pressed") {
-//                            parent.state = "enabled"
-//                            if (currentCountry) {
-//                                currentCountry.rescued = true;
-//                                unit *= 2;
-//                                liveCountries--;
-//                            }
-//                        }
-//        }
-//    }
-
     Text {
         anchors.horizontalCenter: parent.horizontalCenter
         text: "Your funds: "+root.funds+"M €"
         y: 10
+        color: root.textColor
     }
 
     Column {
@@ -96,36 +55,45 @@ DialogBG {
         Text {
             anchors.horizontalCenter: parent.horizontalCenter
             text: !currentCountry?"":currentCountry.name;
+            color: root.textColor
         }
         Text {
             anchors.horizontalCenter: parent.horizontalCenter
             text: !currentCountry?"":("Groups: EU"+(currentCountry.isEuroZone?", Eurozone":""));
+            color: root.textColor
         }
         Text {
             anchors.horizontalCenter: parent.horizontalCenter
             text: !currentCountry?"":"National Debt: "+currentCountry.debt+"M €";
             height: 30
+            color: root.textColor
         }
         Text {
             anchors.horizontalCenter: parent.horizontalCenter
             text: !currentCountry?"":"Budget:";
+            color: root.textColor
         }
         Column {
             anchors.horizontalCenter: parent.horizontalCenter
             Text {
                 text: !currentCountry?"":"Health: "+currentCountry.health.toFixed(2)+"% GDP";
+                color: root.textColor
             }
             Text {
                 text: !currentCountry?"":"Education: "+currentCountry.edu.toFixed(2)+"% GDP";
+                color: root.textColor
             }
             Text {
                 text: !currentCountry?"":"Science: "+currentCountry.science.toFixed(2)+"% GDP";
+                color: root.textColor
             }
             Text {
                 text: !currentCountry?"":"Unemp. benefits: "+currentCountry.unempl.toFixed(2)+"% GDP";
+                color: root.textColor
             }
             Text {
                 text: !currentCountry?"":"Pensions: "+currentCountry.pension.toFixed(2)+"% GDP";
+                color: root.textColor
             }
             Text {
                 text: " "
@@ -134,20 +102,25 @@ DialogBG {
         Text {
             anchors.horizontalCenter: parent.horizontalCenter
             text: !currentCountry?"":"Statistics:";
+            color: root.textColor
         }
         Column {
             anchors.horizontalCenter: parent.horizontalCenter
             Text {
                 text: !currentCountry?"":"Unemployment Rate: "+((20-currentCountry.unempl)*2).toFixed(2)+"%";
+                color: root.textColor
             }
             Text {
                 text: !currentCountry?"":"Poverty: "+((20-currentCountry.pension)*1.9).toFixed(2)+"%";
+                color: root.textColor
             }
             Text {
                 text: !currentCountry?"":"Emigration rate: "+((20-currentCountry.science)*1.8).toFixed(2)+"%";
+                color: root.textColor
             }
             Text {
                 text: !currentCountry?"":"Suicide rate: "+(20-currentCountry.health).toFixed(2)+"%";
+                color: root.textColor
             }
             Text {
                 text: " "
@@ -164,6 +137,9 @@ DialogBG {
             visible: currentCountry!==undefined && currentCountry.rescued
             font.pointSize:32
             text:"RESCUED!"
+            font.weight: Font.Bold
+            style: Text.Outline
+            styleColor: Qt.lighter(color)
         }
     }
 }

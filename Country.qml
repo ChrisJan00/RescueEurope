@@ -50,7 +50,7 @@ Image {
     ]
 
     AnimatedImage {
-        parent: root
+        parent: map
         id: burnImage
         source: "pics/fireLoop.gif"
         x: country.x + country.width/2 - width/2
@@ -61,7 +61,6 @@ Image {
 
     SequentialAnimation {
         id: pressAnimation
-        // this is what causes the error QColor::setNamedColor: Unknown color name 'pressed'
         PropertyAction { target:country; property:"state"; value:"pressed"}
         PauseAnimation { duration: 100 }
         PropertyAction { target:country; property:"state"; value:"hovered"}
@@ -85,7 +84,9 @@ Image {
                 country.state = ""
             country.z = 0
         }
-        onPressed: if (debt <= capacity && !rescued) {
+        onPressed: {
+//            rescueDialog.show();
+            if (debt <= capacity && !rescued) {
                        pressAnimation.restart();
                        country.clickedForLoan();
                    } else if(!rescued) {
@@ -93,6 +94,7 @@ Image {
                        root.unit *= 2;
                        root.liveCountries--;
                    }
+        }
     }
 
     Timer {
@@ -135,7 +137,7 @@ Image {
 
     // Debt Display
     Rectangle {
-        parent: root
+        parent: map
         x: country.x + country.width/2 - width/2
         y: country.y + country.height/2 - height/2
         width: Math.min(country.width,
@@ -147,6 +149,7 @@ Image {
         visible: !rescued
         border.width: 1
         border.color: "black"
+        z: 2
     }
 
     function clickedForLoan()
