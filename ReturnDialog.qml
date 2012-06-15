@@ -9,6 +9,8 @@ DialogBG {
     z: 10
     originalWidth: 300
     originalHeight: 200
+    property variant currentCountry:null
+    property int returned: 0
 
     Column {
         id: contents
@@ -17,7 +19,8 @@ DialogBG {
         Text {
             anchors.horizontalCenter: parent.horizontalCenter
             color: textColor
-            text: "Spain returned you "+100+"M €"
+            text: !currentCountry?"":
+                   currentCountry.name + " returned you "+returned+"M €"
         }
         Text {
             anchors.horizontalCenter: parent.horizontalCenter

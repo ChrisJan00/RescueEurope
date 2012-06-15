@@ -15,6 +15,8 @@ Image {
     property real autoDebt: 1.05
     property bool rescued: false
     property int toReturn: 0
+    property int newLoan: 100
+    property real interests: 1.1
 
     property real health: Math.random() * 20
     property real edu: Math.random() * 8
@@ -59,13 +61,6 @@ Image {
         visible: rescued
     }
 
-    SequentialAnimation {
-        id: pressAnimation
-        PropertyAction { target:country; property:"state"; value:"pressed"}
-        PauseAnimation { duration: 100 }
-        PropertyAction { target:country; property:"state"; value:"hovered"}
-    }
-
     MouseArea {
         anchors.fill: parent
         anchors.leftMargin: parent.width > 30? parent.width/4:0
@@ -85,55 +80,68 @@ Image {
             country.z = 0
         }
         onPressed: {
+            if (!rescued)
+                country.state = "pressed";
+            if (loanDialog.state=="hidden") {
+                loanDialog.currentCountry = country;
+                loanDialog.show();
+            }
 //            rescueDialog.show();
-            if (debt <= capacity && !rescued) {
-                       pressAnimation.restart();
-                       country.clickedForLoan();
-                   } else if(!rescued) {
-                       rescued = true;
-                       root.unit *= 2;
-                       root.liveCountries--;
-                   }
+//            if (debt <= capacity && !rescued) {
+//                       pressAnimation.restart();
+//                       country.clickedForLoan();
+//                   } else if(!rescued) {
+//                       rescued = true;
+//                       root.unit *= 2;
+//                       root.liveCountries--;
+//                   }
         }
-    }
-
-    Timer {
-        id: autoDebtTimer
-        interval: 1000
-        running: true
-        repeat: true
-        onTriggered:
-            // repay
-            if (debt <= capacity) {
-                // inflation
-                debt = Math.round(debt*autoDebt)
-                // debts to player
-                if (toReturn > 0) {
-                    debt += toReturn;
-                    root.funds += toReturn;
-                    toReturn = 0;
-                }
+        onReleased:
+            if (!rescued) {
+                if (containsMouse)
+                    country.state = "hovered";
+                else
+                    country.state = "";
             }
     }
 
-    Timer {
-        id: cutTimer
-        interval: 2533
-        running: true
-        repeat: true
-        onTriggered:
-            // cut
-            if (debt/capacity > 0.33 && canCut) {
-                health *= Math.random();
-                edu *= Math.random();
-                science *= Math.random();
-                unempl *= Math.random();
-                pension *= Math.random();
-                if (health+edu+science+unempl+pension < 1)
-                    canCut = false;
-                debt = Math.floor(debt * 0.5);
-            }
-    }
+//    Timer {
+//        id: autoDebtTimer
+//        interval: 1000
+//        running: true
+//        repeat: true
+//        onTriggered:
+//            // repay
+//            if (debt <= capacity) {
+//                // inflation
+//                debt = Math.round(debt*autoDebt)
+//                // debts to player
+//                if (toReturn > 0) {
+//                    debt += toReturn;
+//                    root.funds += toReturn;
+//                    toReturn = 0;
+//                }
+//            }
+//    }
+
+//    Timer {
+//        id: cutTimer
+//        interval: 2533
+//        running: true
+//        repeat: true
+//        onTriggered:
+//            // cut
+//            if (debt/capacity > 0.33 && canCut) {
+//                health *= Math.random();
+//                edu *= Math.random();
+//                science *= Math.random();
+//                unempl *= Math.random();
+//                pension *= Math.random();
+//                if (health+edu+science+unempl+pension < 1)
+//                    canCut = false;
+//                debt = Math.floor(debt * 0.5);
+//            }
+//    }
 
     // Debt Display
     Rectangle {
@@ -152,13 +160,46 @@ Image {
         z: 2
     }
 
-    function clickedForLoan()
+//    function clickedForLoan()
+//    {
+//        if (debt <= capacity) {
+//            var tmp = Math.min(Math.min(debt, root.funds), root.unit);
+//            debt -= tmp;
+//            root.funds -= tmp;
+//            toReturn += Math.round(root.unit*1.5);
+//        }
+//    }
+
+    function getLoan()
     {
-        if (debt <= capacity) {
-            var tmp = Math.min(Math.min(debt, root.funds), root.unit);
-            debt -= tmp;
-            root.funds -= tmp;
-            toReturn += Math.round(root.unit*1.5);
+        if (newLoan <= funds) {
+            debt += newLoan * interests;
+            toReturn += newLoan * interests;
+            funds -= newLoan;
+            if (!returnTimer.running)
+                returnTimer.restart();
         }
+
     }
+
+    Timer {
+        id: returnTimer
+        running: false
+        repeat: false
+        interval: 1000
+        onTriggered: {
+            returnDialog.currentCountry = country;
+            returnDialog.returned = toReturn;
+            funds += toReturn;
+            debt -= toReturn;
+            toReturn = 0;
+            returnDialog.show();
+            }
+        }
+
+    function returnLoan()
+    {}
+
+    function rescue()
+    {}
 }

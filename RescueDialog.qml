@@ -31,6 +31,10 @@ DialogBG {
                 id: loanButton
                 label: "Rescue"
                 active: true
+                onClicked: {
+                    currentCountry.rescue();
+                    rescueDialog.hide();
+                }
             }
             Button {
                 id: cancelButton

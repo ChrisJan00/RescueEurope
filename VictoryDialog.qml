@@ -13,6 +13,7 @@ DialogBG {
     property bool ending: liveCountries == 0
     onEndingChanged: if (ending) show();
     Text {
+        id: contents
         font.pixelSize: 44
         anchors.centerIn: parent
         color: textColor
