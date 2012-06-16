@@ -15,6 +15,11 @@ Rectangle {
     property alias totalCountries: panel.totalCountries
     property alias liveCountries: panel.liveCountries
 
+    property bool dialogOpen: loanDialog.isOpen ||
+                              rescueDialog.isOpen ||
+                              returnDialog.isOpen ||
+                              victoryDialog.isOpen
+
     Component.onCompleted: {
         totalCountries = 27;
         liveCountries = 27;

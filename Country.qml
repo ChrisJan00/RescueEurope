@@ -62,6 +62,14 @@ Image {
         visible: rescued
     }
 
+    Timer {
+        id: returnToNormalTimer
+        interval: 500
+        repeat: false
+        running: false
+        onTriggered: country.state = ""
+    }
+
     MouseArea {
         anchors.fill: parent
         anchors.leftMargin: parent.width > 30? parent.width/4:0
@@ -69,6 +77,7 @@ Image {
         anchors.topMargin: parent.height > 30? parent.height/4:0
         anchors.bottomMargin: parent.height > 30? parent.height/4:0
         hoverEnabled: true
+        enabled: !root.dialogOpen
         onEntered: {
             if (!rescued)
                 country.state = "hovered"
@@ -86,9 +95,13 @@ Image {
                 if (budget > 0 && loanDialog.state=="hidden") {
                     loanDialog.currentCountry = country;
                     loanDialog.show();
+                    if (!returnToNormalTimer.running)
+                        returnToNormalTimer.start()
                 } else if (budget <= 0 && rescueDialog.state=="hidden") {
                     rescueDialog.currentCountry = country;
                     rescueDialog.show();
+                    if (!returnToNormalTimer.running)
+                        returnToNormalTimer.start()
                 }
             }
 //            rescueDialog.show();

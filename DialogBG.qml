@@ -9,6 +9,8 @@ Rectangle {
     width: originalWidth
     height: originalHeight
 
+    property bool isOpen: state != "hidden"
+
     gradient: Gradient {
         GradientStop {position: 0.0; color:"#0a0088"}
         GradientStop {position: 1.0; color:"#8980ff"}
