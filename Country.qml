@@ -18,6 +18,7 @@ Image {
     property int toReturn: 0
     property int newLoan: 100
     property real interests: 1.1
+    property int returnDelay: 4000
 
     property real health: Math.random() * 20
     property real edu: Math.random() * 8
@@ -204,21 +205,48 @@ Image {
         id: returnTimer
         running: false
         repeat: false
-        interval: 1000
+        interval: returnDelay
         onTriggered: {
-            returnDialog.currentCountry = country;
-            returnDialog.returned = toReturn;
-            doCut();
-            budget -= toReturn;
-            funds += toReturn;
-            debt -= toReturn;
-            toReturn = 0;
-            returnDialog.show();
-            }
+            if (rescued)
+                return;
+            returnDialog.returnList.append({
+                "currentCountry" : country,
+                "returned" : toReturn,
+                "healthCuts" : Math.random() * health,
+                "eduCuts" : Math.random() * edu,
+                "scienceCuts" : Math.random() * science,
+                "unemplCuts" : Math.random() * unempl,
+                "pensionCuts" : Math.random() * pension
+            })
+            returnDialog.activate();
         }
+    }
+
+    function acceptCut(cuts)
+    {
+        budget *= (100 + cuts.healthCuts + cuts.eduCuts +
+                cuts.scienceCuts + cuts.unemplCuts +
+                cuts.pensionCuts)/100.0;
+        health -= cuts.healthCuts;
+        edu -= cuts.eduCuts;
+        science -= cuts.scienceCuts;
+        unempl -= cuts.unemplCuts;
+        pension -= cuts.pensionCuts;
+        budget -= cuts.returned;
+        funds += cuts.returned;
+        debt -= cuts.returned;
+        toReturn = 0;
+    }
 
     function doCut()
     {
+//        currentCountry = returnList.get(0).currentCountry;
+//        returned = returnList.get(0).returned;
+//        healthCuts = returnList.get(0).healtCuts;
+//        eduCuts = returnList.get(0).eduCuts;
+//        scienceCuts = returnList.get(0).scienceCuts;
+//        unemplCuts = returnList.get(0).unemplCuts;
+//        pensionCuts = returnList.get(0).pensionCuts;
         returnDialog.healthCuts = Math.random() * health;
         returnDialog.eduCuts = Math.random() * edu;
         returnDialog.scienceCuts = Math.random() * science;
@@ -239,5 +267,10 @@ Image {
         rescued = true;
         funds += capacity+budget;
         liveCountries--;
+    }
+    function goBankrupt()
+    {
+        rescueDialog.currentCountry = country;
+        rescueDialog.show();
     }
 }

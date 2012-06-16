@@ -39,13 +39,17 @@ DialogBG {
                 onClicked: {
                     currentCountry.rescue();
                     rescueDialog.hide();
+                    returnDialog.activate();
                 }
             }
             Button {
                 id: cancelButton
                 label: "Ignore"
                 active: true
-                onClicked: rescueDialog.hide();
+                onClicked: {
+                    rescueDialog.hide();
+                    returnDialog.activate();
+                }
             }
         }
     }

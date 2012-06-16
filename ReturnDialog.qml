@@ -16,6 +16,11 @@ DialogBG {
     property real scienceCuts: 0
     property real unemplCuts: 0
     property real pensionCuts: 0
+    property variant returnList: returnList
+
+    ListModel {
+        id: returnList
+    }
 
     Column {
         id: contents
@@ -64,10 +69,38 @@ DialogBG {
             onClicked: {
                 returnDialog.hide();
                 if (currentCountry && currentCountry.budget <= 0) {
-                    rescueDialog.currentCountry = currentCountry;
-                    rescueDialog.show();
-                }
+                    currentCountry.goBankrupt();
+                } else
+                if (returnList.count > 0)
+                    activate();
             }
         }
+    }
+
+    function activate() {
+        if (returnList.count == 0 || dialogOpen)
+            return;
+        var cuts = returnList.get(0);
+        currentCountry = cuts.currentCountry;
+        // If the country is bankrupt, ignore and go to next
+        if (currentCountry.budget <= 0) {
+            returnList.remove(0);
+            if (!currentCountry.rescued) {
+                rescueDialog.currentCountry = currentCountry;
+                rescueDialog.show();
+                return;
+            }
+            activate();
+            return;
+        }
+        returned = cuts.returned;
+        healthCuts = cuts.healthCuts;
+        eduCuts = cuts.eduCuts;
+        scienceCuts = cuts.scienceCuts;
+        unemplCuts = cuts.unemplCuts;
+        pensionCuts = cuts.pensionCuts;
+        currentCountry.acceptCut(cuts);
+        returnList.remove(0);
+        show();
     }
 }
