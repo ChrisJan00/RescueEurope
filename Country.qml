@@ -58,8 +58,8 @@ Image {
         id: burnImage
         source: "pics/fireLoop.gif"
         x: country.x + country.width/2 - width/2
-        y: country.y + country.height/2 - height/2
-        z: 3
+        y: country.y + country.height/2 - height/2 - 30
+        z: 3+y/600
         visible: rescued
     }
 

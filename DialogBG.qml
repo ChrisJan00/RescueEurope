@@ -106,6 +106,8 @@ Rectangle {
 
     function show() {
         state = ""
+        if (root.currentCountry && root.currentCountry.state=="hovered")
+            root.currentCountry.state = ""
     }
 
     function hide() {
