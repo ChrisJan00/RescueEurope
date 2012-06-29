@@ -16,8 +16,6 @@ Image {
 
         debt: 100
         capacity: 10000
-        delay: 4
-        autoDebt: 1.06
     }
     Country {
         id: belgium
@@ -30,8 +28,6 @@ Image {
 
         debt: 100
         capacity: 4000
-        delay: 2
-        autoDebt: 1.08
     }
     Country {
         id: cyprus
@@ -44,8 +40,6 @@ Image {
 
         debt: 300
         capacity: 1000
-        delay: 3.1
-        autoDebt: 1.08
     }
     Country {
         id: estonia
@@ -58,8 +52,6 @@ Image {
 
         debt: 130
         capacity: 3500
-        delay: 2.7
-        autoDebt: 1.03
     }
     Country {
         id: finland
@@ -72,8 +64,7 @@ Image {
 
         debt: 149
         capacity: 5500
-        delay: 5.2
-        autoDebt: 1.04
+        newLoan: 900
     }
     Country {
         id: france
@@ -86,8 +77,12 @@ Image {
 
         debt: 500
         capacity: 20000
-        delay: 3.8
-        autoDebt: 1.05
+        newLoan: 100
+        loanDecay: 1.1
+        interests: 1.1
+        interestDecay: 1.1
+        returnDelay: 4000
+        decayDelay : 3000
     }
     Country {
         id: germany
@@ -100,8 +95,6 @@ Image {
 
         debt: 100
         capacity: 30000
-        delay: 5
-        autoDebt: 1.03
     }
     Country {
         id: greece
@@ -114,8 +107,6 @@ Image {
 
         debt: 900
         capacity: 2000
-        delay: 1.1
-        autoDebt: 1.15
     }
     Country {
         id: ireland
@@ -128,8 +119,6 @@ Image {
 
         debt: 300
         capacity: 2400
-        delay: 1.8
-        autoDebt: 1.1
     }
     Country {
         id: italy
@@ -142,8 +131,6 @@ Image {
 
         debt: 300
         capacity: 2400
-        delay: 1.8
-        autoDebt: 1.12
     }
     Country {
         id: luxembourg
@@ -156,8 +143,6 @@ Image {
 
         debt: 100
         capacity: 2400
-        delay: 2.8
-        autoDebt: 1.07
     }
     Country {
         id: malta
@@ -170,8 +155,6 @@ Image {
 
         debt: 200
         capacity: 1000
-        delay: 1.84
-        autoDebt: 1.07
     }
     Country {
         id: netherlands
@@ -184,8 +167,6 @@ Image {
 
         debt: 200
         capacity: 10000
-        delay: 3.84
-        autoDebt: 1.02
     }
     Country {
         id: portugal
@@ -198,8 +179,6 @@ Image {
 
         debt: 400
         capacity: 1000
-        delay: 1.4
-        autoDebt: 1.14
     }
     Country {
         id: slovenia
@@ -212,8 +191,6 @@ Image {
 
         debt: 400
         capacity: 2000
-        delay: 1.4
-        autoDebt: 1.14
     }
     Country {
         id: slowakia
@@ -226,8 +203,6 @@ Image {
 
         debt: 222
         capacity: 2000
-        delay: 1.4
-        autoDebt: 1.16
     }
     Country {
         id: spain
@@ -240,8 +215,6 @@ Image {
 
         debt: 900
         capacity: 8000
-        delay: 2.4
-        autoDebt: 1.19
     }
 
     ////////////////////// EU
@@ -258,8 +231,6 @@ Image {
 
         debt: 900
         capacity: 8000
-        delay: 2.4
-        autoDebt: 1.19
     }
 
     Country {
@@ -274,8 +245,6 @@ Image {
 
         debt: 900
         capacity: 8000
-        delay: 2.4
-        autoDebt: 1.19
     }
 
     Country {
@@ -290,8 +259,6 @@ Image {
 
         debt: 900
         capacity: 8000
-        delay: 2.4
-        autoDebt: 1.19
     }
 
     Country {
@@ -306,8 +273,6 @@ Image {
 
         debt: 900
         capacity: 8000
-        delay: 2.4
-        autoDebt: 1.19
     }
 
     Country {
@@ -322,8 +287,6 @@ Image {
 
         debt: 900
         capacity: 8000
-        delay: 2.4
-        autoDebt: 1.19
     }
 
     Country {
@@ -338,8 +301,6 @@ Image {
 
         debt: 900
         capacity: 8000
-        delay: 2.4
-        autoDebt: 1.19
     }
 
     Country {
@@ -354,8 +315,6 @@ Image {
 
         debt: 900
         capacity: 8000
-        delay: 2.4
-        autoDebt: 1.19
     }
 
     Country {
@@ -370,8 +329,6 @@ Image {
 
         debt: 900
         capacity: 8000
-        delay: 2.4
-        autoDebt: 1.19
     }
 
     Country {
@@ -386,8 +343,6 @@ Image {
 
         debt: 900
         capacity: 8000
-        delay: 2.4
-        autoDebt: 1.19
     }
 
     Country {
@@ -402,7 +357,5 @@ Image {
 
         debt: 900
         capacity: 8000
-        delay: 2.4
-        autoDebt: 1.19
     }
 }

@@ -11,6 +11,13 @@ DialogBG {
     originalHeight: 100
 
     property variant currentCountry : null;
+    property int countryGain;
+
+    function started() {
+        if (!currentCountry)
+            return;
+        countryGain = currentCountry.gain;
+    }
 
     Column {
         id: contents
@@ -26,7 +33,7 @@ DialogBG {
             anchors.horizontalCenter: parent.horizontalCenter
             color: textColor
             text: !currentCountry?"":
-                "You will earn "+ (currentCountry.capacity + currentCountry.budget)
+                "You will earn "+ countryGain
                                    +"M € with the bailout rescue plan"
         }
         Row {

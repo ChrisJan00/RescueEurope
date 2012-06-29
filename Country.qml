@@ -7,25 +7,29 @@ Image {
     property string sourceHover
     property string sourcePressed
 
+    // public
     property string name: ""
     property bool isEuroZone: true
     property int debt: 100
     property int capacity: 1000
-    property int budget: 10
-    property real delay: 2
-    property real autoDebt: 1.05
+    property int newLoan: 100
+    property real loanDecay: 1.1
+    property real interests: 1.1
+    property real interestDecay: 1.1
+    property int returnDelay: 4000
+    property int decayDelay : 3000
+
+    // internal
+    property int budget: capacity
     property bool rescued: false
     property int toReturn: 0
-    property int newLoan: 100
-    property real interests: 1.1
-    property int returnDelay: 4000
-
     property real health: Math.random() * 20
     property real edu: Math.random() * 8
     property real science: Math.random() * 4
     property real unempl: Math.random() * 20
     property real pension: Math.random() * 20
     property bool canCut: true
+    property int gain: Math.max(capacity + budget, capacity * 0.1)
 
     source: sourceNormal
     states: [
@@ -105,15 +109,6 @@ Image {
                         returnToNormalTimer.start()
                 }
             }
-//            rescueDialog.show();
-//            if (debt <= capacity && !rescued) {
-//                       pressAnimation.restart();
-//                       country.clickedForLoan();
-//                   } else if(!rescued) {
-//                       rescued = true;
-//                       root.unit *= 2;
-//                       root.liveCountries--;
-//                   }
         }
         onReleased:
             if (!rescued) {
@@ -124,54 +119,16 @@ Image {
             }
     }
 
-//    Timer {
-//        id: autoDebtTimer
-//        interval: 1000
-//        running: true
-//        repeat: true
-//        onTriggered:
-//            // repay
-//            if (debt <= capacity) {
-//                // inflation
-//                debt = Math.round(debt*autoDebt)
-//                // debts to player
-//                if (toReturn > 0) {
-//                    debt += toReturn;
-//                    root.funds += toReturn;
-//                    toReturn = 0;
-//                }
-//            }
-//    }
-
-//    Timer {
-//        id: cutTimer
-//        interval: 2533
-//        running: true
-//        repeat: true
-//        onTriggered:
-//            // cut
-//            if (debt/capacity > 0.33 && canCut) {
-//                health *= Math.random();
-//                edu *= Math.random();
-//                science *= Math.random();
-//                unempl *= Math.random();
-//                pension *= Math.random();
-//                if (health+edu+science+unempl+pension < 1)
-//                    canCut = false;
-//                debt = Math.floor(debt * 0.5);
-//            }
-//    }
-
-    // Debt Display
+    // Budget Display
     Rectangle {
         parent: map
         x: country.x + country.width/2 - width/2
         y: country.y + country.height/2 - height/2
-        width: Math.min(country.width,
-                        country.width * debt / capacity)
+        width: Math.max(1, Math.min(country.width,
+                        country.width * budget / capacity))
         Behavior on width { PropertyAnimation { duration: 500 } }
-        color: debt/capacity < 0.33? "green" :
-               debt/capacity < 0.66? "orange" : "red"
+        color: budget/capacity < 0.33? "red" :
+               budget/capacity < 0.66? "orange" : "green"
         height: 4
         visible: !rescued
         border.width: 1
@@ -179,22 +136,16 @@ Image {
         z: 2
     }
 
-//    function clickedForLoan()
-//    {
-//        if (debt <= capacity) {
-//            var tmp = Math.min(Math.min(debt, root.funds), root.unit);
-//            debt -= tmp;
-//            root.funds -= tmp;
-//            toReturn += Math.round(root.unit*1.5);
-//        }
-//    }
-
-    function getLoan()
+    function getLoan(activeInterests, activeDebt, activeLoan)
     {
+        newLoan = activeLoan;
+        debt = activeDebt;
+        interests = activeInterests;
         if (newLoan <= funds) {
             debt += newLoan * interests;
             toReturn += newLoan * interests;
             funds -= newLoan;
+            decay();
             if (!returnTimer.running)
                 returnTimer.restart();
         }
@@ -222,6 +173,16 @@ Image {
         }
     }
 
+    Timer {
+        id: decayTimer
+        running: true
+        repeat: true
+        interval: decayDelay
+        onTriggered: {
+            decay();
+        }
+    }
+
     function acceptCut(cuts)
     {
         budget *= (100 + cuts.healthCuts + cuts.eduCuts +
@@ -240,13 +201,6 @@ Image {
 
     function doCut()
     {
-//        currentCountry = returnList.get(0).currentCountry;
-//        returned = returnList.get(0).returned;
-//        healthCuts = returnList.get(0).healtCuts;
-//        eduCuts = returnList.get(0).eduCuts;
-//        scienceCuts = returnList.get(0).scienceCuts;
-//        unemplCuts = returnList.get(0).unemplCuts;
-//        pensionCuts = returnList.get(0).pensionCuts;
         returnDialog.healthCuts = Math.random() * health;
         returnDialog.eduCuts = Math.random() * edu;
         returnDialog.scienceCuts = Math.random() * science;
@@ -265,12 +219,22 @@ Image {
     function rescue()
     {
         rescued = true;
-        funds += capacity+budget;
+        funds += gain;
         liveCountries--;
     }
     function goBankrupt()
     {
         rescueDialog.currentCountry = country;
         rescueDialog.show();
+    }
+
+    function decay()
+    {
+        return;
+        if (rescued)
+            return;
+        interests *= interestDecay;
+        newLoan *= loanDecay;
+//        budget /= interests;
     }
 }

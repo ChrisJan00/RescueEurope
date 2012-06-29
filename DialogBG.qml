@@ -105,6 +105,7 @@ Rectangle {
     ]
 
     function show() {
+        started();
         state = ""
         if (root.currentCountry && root.currentCountry.state=="hovered")
             root.currentCountry.state = ""
@@ -113,4 +114,6 @@ Rectangle {
     function hide() {
         state = "hidden"
     }
+
+    function started() {}
 }

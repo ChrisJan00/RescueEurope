@@ -11,6 +11,22 @@ DialogBG {
     originalHeight: 100
     property variant currentCountry : null
 
+    property string countryName;
+    property int countryLoan;
+    property int countryDebt;
+    property real countryInterests;
+
+    function started() {
+        if (!currentCountry)
+            return;
+
+        countryName = currentCountry.name;
+        countryLoan = currentCountry.newLoan;
+        countryDebt = currentCountry.debt;
+        countryInterests = currentCountry.interests;
+        loanButton.active = (countryLoan <= funds);
+    }
+
     Column {
         id: contents
         anchors.centerIn: parent
@@ -18,20 +34,18 @@ DialogBG {
         Text {
             anchors.horizontalCenter: parent.horizontalCenter
             color: textColor
-            text: !currentCountry?"":
-                currentCountry.name+" needs a loan of "+currentCountry.newLoan+"M €"
+            text: countryName + " needs a loan of " + countryLoan + "M €"
+        }
+        Text {
+            anchors.horizontalCenter: parent.horizontalCenter
+            color: textColor
+            text: "National Debt: " + countryDebt + "M €"
         }
         Text {
             anchors.horizontalCenter: parent.horizontalCenter
             color: textColor
             text: !currentCountry?"":
-                "National Debt: "+currentCountry.debt+"M €"
-        }
-        Text {
-            anchors.horizontalCenter: parent.horizontalCenter
-            color: textColor
-            text: !currentCountry?"":
-                "Interests: "+((currentCountry.interests-1)*100).toFixed(2)+"%"
+                "Interests: "+((countryInterests-1)*100).toFixed(2)+"%"
         }
         Row {
             anchors.horizontalCenter: parent.horizontalCenter
@@ -39,17 +53,21 @@ DialogBG {
             Button {
                 id: loanButton
                 label: "Lend"
-                active: currentCountry && currentCountry.newLoan <= funds ? true : false
+                active: true
                 onClicked: {
-                    currentCountry.getLoan();
+                    currentCountry.getLoan(countryInterests, countryDebt, countryLoan);
                     loanDialog.hide();
+                    returnDialog.activate();
                 }
             }
             Button {
                 id: cancelButton
                 label: "Ignore"
                 active: true
-                onClicked: loanDialog.hide();
+                onClicked:  {
+                    loanDialog.hide();
+                    returnDialog.activate();
+                }
             }
         }
     }

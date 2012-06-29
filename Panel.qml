@@ -8,7 +8,7 @@ DialogBG {
     y: -1
     visible: true
 
-    property int funds : 1000
+    property int funds : 10000
     property int unit: 100
     property variant currentCountry: null
     property variant totalCountries: 1
