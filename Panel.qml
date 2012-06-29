@@ -21,7 +21,7 @@ DialogBG {
     Connections {
         target: root
         onRestartAll: {
-            liveCountries = 1// 27;
+            liveCountries = 27;
             funds = 1000;
             startDialog.show();
         }
