@@ -14,8 +14,29 @@ Image {
         sourceHover: "pics/eurozone/austria_hover.png"
         sourcePressed: "pics/eurozone/austria_press.png"
 
-        debt: 100
-        capacity: 10000
+        function restartCountry() {
+            debt = 100
+            capacity = Math.random()*2000 // ocapacity = 10000;
+            newLoan = 900
+            loanDecay = 10
+            interests = 1.1
+            interestDecay= 0.1
+            returnDelay = 4000
+            decayDelay = 3000
+
+            // internal
+            budget = capacity
+            rescued = false
+            toReturn = 0
+            health = Math.random() * 20
+            edu = Math.random() * 8
+            science = Math.random() * 4
+            unempl = Math.random() * 20
+            pension = Math.random() * 20
+            canCut = true
+        }
+
+
     }
     Country {
         id: belgium
@@ -26,8 +47,27 @@ Image {
         sourceHover: "pics/eurozone/belgium_hover.png"
         sourcePressed: "pics/eurozone/belgium_press.png"
 
-        debt: 100
-        capacity: 4000
+        function restartCountry() {
+            debt = 100
+            capacity = Math.random()*2000 // ocapacity = 4000
+            newLoan = 900
+            loanDecay = 10
+            interests = 1.1
+            interestDecay = 0.1
+            returnDelay = 4000
+            decayDelay = 3000
+            // internal
+            budget = capacity
+            rescued = false
+            toReturn = 0
+            health = Math.random() * 20
+            edu = Math.random() * 8
+            science = Math.random() * 4
+            unempl = Math.random() * 20
+            pension = Math.random() * 20
+            canCut = true
+        }
+
     }
     Country {
         id: cyprus
@@ -38,8 +78,27 @@ Image {
         sourceHover: "pics/eurozone/cyprus_hover.png"
         sourcePressed: "pics/eurozone/cyprus_press.png"
 
-        debt: 300
-        capacity: 1000
+        function restartCountry() {
+            debt = 300
+            capacity = Math.random()*2000 // ocapacity = 1000
+            newLoan = 900
+            loanDecay = 10
+            interests = 1.1
+            interestDecay = 0.1
+            returnDelay = 4000
+            decayDelay = 3000
+            // internal
+            budget = capacity
+            rescued = false
+            toReturn = 0
+            health = Math.random() * 20
+            edu = Math.random() * 8
+            science = Math.random() * 4
+            unempl = Math.random() * 20
+            pension = Math.random() * 20
+            canCut = true
+        }
+
     }
     Country {
         id: estonia
@@ -50,8 +109,27 @@ Image {
         sourceHover: "pics/eurozone/estonia_hover.png"
         sourcePressed: "pics/eurozone/estonia_press.png"
 
-        debt: 130
-        capacity: 3500
+        function restartCountry() {
+            debt = 130
+            capacity = Math.random()*2000 // ocapacity = 3500
+            newLoan = 900
+            loanDecay = 10
+            interests = 1.1
+            interestDecay = 0.1
+            returnDelay = 4000
+            decayDelay = 3000
+            // internal
+            budget = capacity
+            rescued = false
+            toReturn = 0
+            health = Math.random() * 20
+            edu = Math.random() * 8
+            science = Math.random() * 4
+            unempl = Math.random() * 20
+            pension = Math.random() * 20
+            canCut = true
+        }
+
     }
     Country {
         id: finland
@@ -62,9 +140,27 @@ Image {
         sourceHover: "pics/eurozone/finland_hover.png"
         sourcePressed: "pics/eurozone/finland_press.png"
 
-        debt: 149
-        capacity: 5500
-        newLoan: 900
+        function restartCountry() {
+            debt = 149
+            capacity = Math.random()*2000 // ocapacity = 5500
+            newLoan = 900
+            loanDecay = 10
+            interests = 1.1
+            interestDecay = 0.1
+            returnDelay = 4000
+            decayDelay = 3000
+            // internal
+            budget = capacity
+            rescued = false
+            toReturn = 0
+            health = Math.random() * 20
+            edu = Math.random() * 8
+            science = Math.random() * 4
+            unempl = Math.random() * 20
+            pension = Math.random() * 20
+            canCut = true
+        }
+
     }
     Country {
         id: france
@@ -75,14 +171,27 @@ Image {
         sourceHover: "pics/eurozone/france_hover.png"
         sourcePressed: "pics/eurozone/france_press.png"
 
-        debt: 500
-        capacity: 20000
-        newLoan: 100
-        loanDecay: 1.1
-        interests: 1.1
-        interestDecay: 1.1
-        returnDelay: 4000
-        decayDelay : 3000
+        function restartCountry() {
+            debt = 500
+            capacity = Math.random()*2000 // ocapacity = 20000
+            newLoan = 100
+            loanDecay = 10
+            interests = 1.1
+            interestDecay = 0.1
+            returnDelay = 4000
+            decayDelay = 3000
+            // internal
+            budget = capacity
+            rescued = false
+            toReturn = 0
+            health = Math.random() * 20
+            edu = Math.random() * 8
+            science = Math.random() * 4
+            unempl = Math.random() * 20
+            pension = Math.random() * 20
+            canCut = true
+        }
+
     }
     Country {
         id: germany
@@ -93,8 +202,27 @@ Image {
         sourceHover: "pics/eurozone/germany_hover.png"
         sourcePressed: "pics/eurozone/germany_press.png"
 
-        debt: 100
-        capacity: 30000
+        function restartCountry() {
+            debt = 100
+            capacity = Math.random()*2000 // ocapacity = 30000
+            newLoan = 900
+            loanDecay = 10
+            interests = 1.1
+            interestDecay = 0.1
+            returnDelay = 4000
+            decayDelay = 3000
+            // internal
+            budget = capacity
+            rescued = false
+            toReturn = 0
+            health = Math.random() * 20
+            edu = Math.random() * 8
+            science = Math.random() * 4
+            unempl = Math.random() * 20
+            pension = Math.random() * 20
+            canCut = true
+        }
+
     }
     Country {
         id: greece
@@ -105,8 +233,27 @@ Image {
         sourceHover: "pics/eurozone/greece_hover.png"
         sourcePressed: "pics/eurozone/greece_press.png"
 
-        debt: 900
-        capacity: 2000
+        function restartCountry() {
+            debt = 900
+            capacity = Math.random()*2000 // ocapacity = 2000
+            newLoan = 900
+            loanDecay = 10
+            interests = 1.1
+            interestDecay = 0.1
+            returnDelay = 4000
+            decayDelay = 3000
+            // internal
+            budget = capacity
+            rescued = false
+            toReturn = 0
+            health = Math.random() * 20
+            edu = Math.random() * 8
+            science = Math.random() * 4
+            unempl = Math.random() * 20
+            pension = Math.random() * 20
+            canCut = true
+        }
+
     }
     Country {
         id: ireland
@@ -117,8 +264,27 @@ Image {
         sourceHover: "pics/eurozone/ireland_hover.png"
         sourcePressed: "pics/eurozone/ireland_press.png"
 
-        debt: 300
-        capacity: 2400
+        function restartCountry() {
+            debt = 300
+            capacity = Math.random()*2000 // ocapacity = 2400
+            newLoan = 900
+            loanDecay = 10
+            interests = 1.1
+            interestDecay = 0.1
+            returnDelay = 4000
+            decayDelay = 3000
+            // internal
+            budget = capacity
+            rescued = false
+            toReturn = 0
+            health = Math.random() * 20
+            edu = Math.random() * 8
+            science = Math.random() * 4
+            unempl = Math.random() * 20
+            pension = Math.random() * 20
+            canCut = true
+        }
+
     }
     Country {
         id: italy
@@ -129,8 +295,27 @@ Image {
         sourceHover: "pics/eurozone/italy_hover.png"
         sourcePressed: "pics/eurozone/italy_press.png"
 
-        debt: 300
-        capacity: 2400
+        function restartCountry() {
+            debt = 300
+            capacity = Math.random()*2000 // ocapacity = 2400
+            newLoan = 900
+            loanDecay = 10
+            interests = 1.1
+            interestDecay = 0.1
+            returnDelay = 4000
+            decayDelay = 3000
+            // internal
+            budget = capacity
+            rescued = false
+            toReturn = 0
+            health = Math.random() * 20
+            edu = Math.random() * 8
+            science = Math.random() * 4
+            unempl = Math.random() * 20
+            pension = Math.random() * 20
+            canCut = true
+        }
+
     }
     Country {
         id: luxembourg
@@ -141,8 +326,27 @@ Image {
         sourceHover: "pics/eurozone/luxembourg_hover.png"
         sourcePressed: "pics/eurozone/luxembourg_press.png"
 
-        debt: 100
-        capacity: 2400
+        function restartCountry() {
+            debt = 100
+            capacity = Math.random()*2000 // ocapacity = 2400
+            newLoan = 900
+            loanDecay = 10
+            interests = 1.1
+            interestDecay = 0.1
+            returnDelay = 4000
+            decayDelay = 3000
+            // internal
+            budget = capacity
+            rescued = false
+            toReturn = 0
+            health = Math.random() * 20
+            edu = Math.random() * 8
+            science = Math.random() * 4
+            unempl = Math.random() * 20
+            pension = Math.random() * 20
+            canCut = true
+        }
+
     }
     Country {
         id: malta
@@ -153,8 +357,27 @@ Image {
         sourceHover: "pics/eurozone/malta_hover.png"
         sourcePressed: "pics/eurozone/malta_press.png"
 
-        debt: 200
-        capacity: 1000
+        function restartCountry() {
+            debt = 200
+            capacity = Math.random()*2000 // ocapacity = 1000
+            newLoan = 900
+            loanDecay = 10
+            interests = 1.1
+            interestDecay = 0.1
+            returnDelay = 4000
+            decayDelay = 3000
+            // internal
+            budget = capacity
+            rescued = false
+            toReturn = 0
+            health = Math.random() * 20
+            edu = Math.random() * 8
+            science = Math.random() * 4
+            unempl = Math.random() * 20
+            pension = Math.random() * 20
+            canCut = true
+        }
+
     }
     Country {
         id: netherlands
@@ -165,8 +388,27 @@ Image {
         sourceHover: "pics/eurozone/netherlands_hover.png"
         sourcePressed: "pics/eurozone/netherlands_press.png"
 
-        debt: 200
-        capacity: 10000
+        function restartCountry() {
+            debt = 200
+            capacity = Math.random()*2000 // ocapacity = 10000
+            newLoan = 900
+            loanDecay = 10
+            interests = 1.1
+            interestDecay = 0.1
+            returnDelay = 4000
+            decayDelay = 3000
+            // internal
+            budget = capacity
+            rescued = false
+            toReturn = 0
+            health = Math.random() * 20
+            edu = Math.random() * 8
+            science = Math.random() * 4
+            unempl = Math.random() * 20
+            pension = Math.random() * 20
+            canCut = true
+        }
+
     }
     Country {
         id: portugal
@@ -177,8 +419,27 @@ Image {
         sourceHover: "pics/eurozone/portugal_hover.png"
         sourcePressed: "pics/eurozone/portugal_press.png"
 
-        debt: 400
-        capacity: 1000
+        function restartCountry() {
+            debt = 400
+            capacity = Math.random()*2000 // ocapacity = 1000
+            newLoan = 900
+            loanDecay = 10
+            interests = 1.1
+            interestDecay = 0.1
+            returnDelay = 4000
+            decayDelay = 3000
+            // internal
+            budget = capacity
+            rescued = false
+            toReturn = 0
+            health = Math.random() * 20
+            edu = Math.random() * 8
+            science = Math.random() * 4
+            unempl = Math.random() * 20
+            pension = Math.random() * 20
+            canCut = true
+        }
+
     }
     Country {
         id: slovenia
@@ -189,8 +450,27 @@ Image {
         sourceHover: "pics/eurozone/slovenia_hover.png"
         sourcePressed: "pics/eurozone/slovenia_press.png"
 
-        debt: 400
-        capacity: 2000
+        function restartCountry() {
+            debt = 400
+            capacity = Math.random()*2000 // ocapacity = 2000
+            newLoan = 900
+            loanDecay = 10
+            interests = 1.1
+            interestDecay = 0.1
+            returnDelay = 4000
+            decayDelay = 3000
+            // internal
+            budget = capacity
+            rescued = false
+            toReturn = 0
+            health = Math.random() * 20
+            edu = Math.random() * 8
+            science = Math.random() * 4
+            unempl = Math.random() * 20
+            pension = Math.random() * 20
+            canCut = true
+        }
+
     }
     Country {
         id: slowakia
@@ -201,8 +481,27 @@ Image {
         sourceHover: "pics/eurozone/slowakia_hover.png"
         sourcePressed: "pics/eurozone/slowakia_press.png"
 
-        debt: 222
-        capacity: 2000
+        function restartCountry() {
+            debt = 222
+            capacity = Math.random()*2000 // ocapacity = 2000
+            newLoan = 900
+            loanDecay = 10
+            interests = 1.1
+            interestDecay = 0.1
+            returnDelay = 4000
+            decayDelay = 3000
+            // internal
+            budget = capacity
+            rescued = false
+            toReturn = 0
+            health = Math.random() * 20
+            edu = Math.random() * 8
+            science = Math.random() * 4
+            unempl = Math.random() * 20
+            pension = Math.random() * 20
+            canCut = true
+        }
+
     }
     Country {
         id: spain
@@ -213,8 +512,27 @@ Image {
         sourceHover: "pics/eurozone/spain_hover.png"
         sourcePressed: "pics/eurozone/spain_press.png"
 
-        debt: 900
-        capacity: 8000
+        function restartCountry() {
+            debt = 900
+            capacity = Math.random()*2000 // ocapacity = 8000
+            newLoan = 900
+            loanDecay = 10
+            interests = 1.1
+            interestDecay = 0.1
+            returnDelay = 4000
+            decayDelay = 3000
+            // internal
+            budget = capacity
+            rescued = false
+            toReturn = 0
+            health = Math.random() * 20
+            edu = Math.random() * 8
+            science = Math.random() * 4
+            unempl = Math.random() * 20
+            pension = Math.random() * 20
+            canCut = true
+        }
+
     }
 
     ////////////////////// EU
@@ -229,8 +547,27 @@ Image {
         sourceHover: "pics/EU/bulgaria_hover.png"
         sourcePressed: "pics/EU/bulgaria_press.png"
 
-        debt: 900
-        capacity: 8000
+        function restartCountry() {
+            debt = 900
+            capacity = Math.random()*2000 // ocapacity = 8000
+            newLoan = 900
+            loanDecay = 10
+            interests = 1.1
+            interestDecay = 0.1
+            returnDelay = 4000
+            decayDelay = 3000
+            // internal
+            budget = capacity
+            rescued = false
+            toReturn = 0
+            health = Math.random() * 20
+            edu = Math.random() * 8
+            science = Math.random() * 4
+            unempl = Math.random() * 20
+            pension = Math.random() * 20
+            canCut = true
+        }
+
     }
 
     Country {
@@ -243,8 +580,27 @@ Image {
         sourceHover: "pics/EU/czech_hover.png"
         sourcePressed: "pics/EU/czech_press.png"
 
-        debt: 900
-        capacity: 8000
+        function restartCountry() {
+            debt = 900
+            capacity = Math.random()*2000 // ocapacity = 8000
+            newLoan = 900
+            loanDecay = 10
+            interests = 1.1
+            interestDecay = 0.1
+            returnDelay = 4000
+            decayDelay = 3000
+            // internal
+            budget = capacity
+            rescued = false
+            toReturn = 0
+            health = Math.random() * 20
+            edu = Math.random() * 8
+            science = Math.random() * 4
+            unempl = Math.random() * 20
+            pension = Math.random() * 20
+            canCut = true
+        }
+
     }
 
     Country {
@@ -257,8 +613,27 @@ Image {
         sourceHover: "pics/EU/denmark_hover.png"
         sourcePressed: "pics/EU/denmark_press.png"
 
-        debt: 900
-        capacity: 8000
+        function restartCountry() {
+            debt = 900
+            capacity = Math.random()*2000 // ocapacity = 8000
+            newLoan = 900
+            loanDecay = 10
+            interests = 1.1
+            interestDecay = 0.1
+            returnDelay = 4000
+            decayDelay = 3000
+            // internal
+            budget = capacity
+            rescued = false
+            toReturn = 0
+            health = Math.random() * 20
+            edu = Math.random() * 8
+            science = Math.random() * 4
+            unempl = Math.random() * 20
+            pension = Math.random() * 20
+            canCut = true
+        }
+
     }
 
     Country {
@@ -271,8 +646,27 @@ Image {
         sourceHover: "pics/EU/great_britain_hover.png"
         sourcePressed: "pics/EU/great_britain_press.png"
 
-        debt: 900
-        capacity: 8000
+        function restartCountry() {
+            debt = 900
+            capacity = Math.random()*2000 // ocapacity = 8000
+            newLoan = 900
+            loanDecay = 10
+            interests = 1.1
+            interestDecay = 0.1
+            returnDelay = 4000
+            decayDelay = 3000
+            // internal
+            budget = capacity
+            rescued = false
+            toReturn = 0
+            health = Math.random() * 20
+            edu = Math.random() * 8
+            science = Math.random() * 4
+            unempl = Math.random() * 20
+            pension = Math.random() * 20
+            canCut = true
+        }
+
     }
 
     Country {
@@ -285,8 +679,27 @@ Image {
         sourceHover: "pics/EU/hungary_hover.png"
         sourcePressed: "pics/EU/hungary_press.png"
 
-        debt: 900
-        capacity: 8000
+        function restartCountry() {
+            debt = 900
+            capacity = Math.random()*2000 // ocapacity = 8000
+            newLoan = 900
+            loanDecay = 10
+            interests = 1.1
+            interestDecay = 0.1
+            returnDelay = 4000
+            decayDelay = 3000
+            // internal
+            budget = capacity
+            rescued = false
+            toReturn = 0
+            health = Math.random() * 20
+            edu = Math.random() * 8
+            science = Math.random() * 4
+            unempl = Math.random() * 20
+            pension = Math.random() * 20
+            canCut = true
+        }
+
     }
 
     Country {
@@ -299,8 +712,27 @@ Image {
         sourceHover: "pics/EU/latvia_hover.png"
         sourcePressed: "pics/EU/latvia_press.png"
 
-        debt: 900
-        capacity: 8000
+        function restartCountry() {
+            debt = 900
+            capacity = Math.random()*2000 // ocapacity = 8000
+            newLoan = 900
+            loanDecay = 10
+            interests = 1.1
+            interestDecay = 0.1
+            returnDelay = 4000
+            decayDelay = 3000
+            // internal
+            budget = capacity
+            rescued = false
+            toReturn = 0
+            health = Math.random() * 20
+            edu = Math.random() * 8
+            science = Math.random() * 4
+            unempl = Math.random() * 20
+            pension = Math.random() * 20
+            canCut = true
+        }
+
     }
 
     Country {
@@ -313,8 +745,27 @@ Image {
         sourceHover: "pics/EU/lithuania_hover.png"
         sourcePressed: "pics/EU/lithuania_press.png"
 
-        debt: 900
-        capacity: 8000
+        function restartCountry() {
+            debt = 900
+            capacity = Math.random()*2000 // ocapacity = 8000
+            newLoan = 900
+            loanDecay = 10
+            interests = 1.1
+            interestDecay = 0.1
+            returnDelay = 4000
+            decayDelay = 3000
+            // internal
+            budget = capacity
+            rescued = false
+            toReturn = 0
+            health = Math.random() * 20
+            edu = Math.random() * 8
+            science = Math.random() * 4
+            unempl = Math.random() * 20
+            pension = Math.random() * 20
+            canCut = true
+        }
+
     }
 
     Country {
@@ -327,8 +778,27 @@ Image {
         sourceHover: "pics/EU/poland_hover.png"
         sourcePressed: "pics/EU/poland_press.png"
 
-        debt: 900
-        capacity: 8000
+        function restartCountry() {
+            debt = 900
+            capacity = Math.random()*2000 // ocapacity = 8000
+            newLoan = 900
+            loanDecay = 10
+            interests = 1.1
+            interestDecay = 0.1
+            returnDelay = 4000
+            decayDelay = 3000
+            // internal
+            budget = capacity
+            rescued = false
+            toReturn = 0
+            health = Math.random() * 20
+            edu = Math.random() * 8
+            science = Math.random() * 4
+            unempl = Math.random() * 20
+            pension = Math.random() * 20
+            canCut = true
+        }
+
     }
 
     Country {
@@ -341,8 +811,27 @@ Image {
         sourceHover: "pics/EU/romania_hover.png"
         sourcePressed: "pics/EU/romania_press.png"
 
-        debt: 900
-        capacity: 8000
+        function restartCountry() {
+            debt = 900
+            capacity = Math.random()*2000 // ocapacity = 8000
+            newLoan = 900
+            loanDecay = 10
+            interests = 1.1
+            interestDecay = 0.1
+            returnDelay = 4000
+            decayDelay = 3000
+            // internal
+            budget = capacity
+            rescued = false
+            toReturn = 0
+            health = Math.random() * 20
+            edu = Math.random() * 8
+            science = Math.random() * 4
+            unempl = Math.random() * 20
+            pension = Math.random() * 20
+            canCut = true
+        }
+
     }
 
     Country {
@@ -355,7 +844,26 @@ Image {
         sourceHover: "pics/EU/sweden_hover.png"
         sourcePressed: "pics/EU/sweden_press.png"
 
-        debt: 900
-        capacity: 8000
+        function restartCountry() {
+            debt = 900
+            capacity = Math.random()*2000 // ocapacity = 8000
+            newLoan = 900
+            loanDecay = 10
+            interests = 1.1
+            interestDecay = 0.1
+            returnDelay = 4000
+            decayDelay = 3000
+            // internal
+            budget = capacity
+            rescued = false
+            toReturn = 0
+            health = Math.random() * 20
+            edu = Math.random() * 8
+            science = Math.random() * 4
+            unempl = Math.random() * 20
+            pension = Math.random() * 20
+            canCut = true
+        }
+
     }
 }

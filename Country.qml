@@ -13,9 +13,9 @@ Image {
     property int debt: 100
     property int capacity: 1000
     property int newLoan: 100
-    property real loanDecay: 1.1
+    property real loanDecay: 10
     property real interests: 1.1
-    property real interestDecay: 1.1
+    property real interestDecay: 0.1
     property int returnDelay: 4000
     property int decayDelay : 3000
 
@@ -29,7 +29,7 @@ Image {
     property real unempl: Math.random() * 20
     property real pension: Math.random() * 20
     property bool canCut: true
-    property int gain: Math.max(capacity + budget, capacity * 0.1)
+    property int gain: Math.max(capacity + budget, capacity * 0.9)
 
     source: sourceNormal
     states: [
@@ -65,6 +65,11 @@ Image {
         y: country.y + country.height/2 - height/2 - 30
         z: 3+y/600
         visible: rescued
+    }
+
+    Connections {
+        target: root
+        onRestartAll: restartCountry();
     }
 
     Timer {
@@ -119,17 +124,21 @@ Image {
             }
     }
 
-    // Budget Display
+    // Status Display
     Rectangle {
         parent: map
         x: country.x + country.width/2 - width/2
         y: country.y + country.height/2 - height/2
-        width: Math.max(1, Math.min(country.width,
-                        country.width * budget / capacity))
-        Behavior on width { PropertyAnimation { duration: 500 } }
         color: budget/capacity < 0.33? "red" :
-               budget/capacity < 0.66? "orange" : "green"
-        height: 4
+            budget/capacity < 0.66? "orange" : "green"
+
+        property int dimension: Math.min(country.width/2, country.height/2)
+        width: Math.max(6, Math.min(dimension,
+                                    dimension * budget / capacity + 6))
+
+        Behavior on width { PropertyAnimation { duration: 500 } }
+        height: width
+        radius: width/2
         visible: !rescued
         border.width: 1
         border.color: "black"
@@ -230,11 +239,10 @@ Image {
 
     function decay()
     {
-        return;
         if (rescued)
             return;
-        interests *= interestDecay;
-        newLoan *= loanDecay;
-//        budget /= interests;
+        interests += interestDecay;
+        newLoan += loanDecay;
+        //budget -= newLoan/interests;
     }
 }

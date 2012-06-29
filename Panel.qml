@@ -8,8 +8,7 @@ DialogBG {
     y: -1
     visible: true
 
-    property int funds : 10000
-    property int unit: 100
+    property int funds : 1000
     property variant currentCountry: null
     property variant totalCountries: 1
     property variant liveCountries: 1
@@ -18,6 +17,15 @@ DialogBG {
                                 protaPicture.state = "superrich";
                             else if (liveCountries/totalCountries < 0.66)
                                 protaPicture.state = "rich";
+
+    Connections {
+        target: root
+        onRestartAll: {
+            liveCountries = 1// 27;
+            funds = 1000;
+            startDialog.show();
+        }
+    }
 
     Image {
         id: protaPicture
@@ -70,7 +78,7 @@ DialogBG {
         }
         Text {
             anchors.horizontalCenter: parent.horizontalCenter
-            text: !currentCountry?"":"Budget: "+currentCountry.budget+"M €";
+            text: !currentCountry?"":"Budget: "//+currentCountry.budget+"M €";
             color: root.textColor
         }
         Column {

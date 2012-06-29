@@ -18,7 +18,7 @@ Rectangle {
 
     signal clicked
 
-    width: 80
+    width: Math.max(80, labelText.width + 8)
     height: 28
     border.color: borderColor
     border.width: 1
@@ -30,6 +30,7 @@ Rectangle {
     }
 
     Text {
+        id: labelText
         anchors.centerIn: parent
         color: textColor
         text: label

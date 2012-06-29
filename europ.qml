@@ -7,11 +7,12 @@ Rectangle {
     width: 800
     height: 600
 
+    signal restartAll
+
     property color textColor: "yellow"
 
     ////////////////// PLAYER PROPERTIES
     property alias funds : panel.funds
-    property alias unit: panel.unit
     property alias currentCountry: panel.currentCountry
     property alias totalCountries: panel.totalCountries
     property alias liveCountries: panel.liveCountries
@@ -19,11 +20,12 @@ Rectangle {
     property bool dialogOpen: loanDialog.isOpen ||
                               rescueDialog.isOpen ||
                               returnDialog.isOpen ||
-                              victoryDialog.isOpen
+                              startDialog.isOpen //||
+//                              victoryDialog.isOpen
 
     Component.onCompleted: {
         totalCountries = 27;
-        liveCountries = 27;
+        restartAll();
     }
     ////////////////////
 
@@ -51,5 +53,9 @@ Rectangle {
 
     VictoryDialog {
         id: victoryDialog
+    }
+
+    StartDialog {
+        id: startDialog
     }
 }
