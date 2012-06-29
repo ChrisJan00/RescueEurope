@@ -8,7 +8,7 @@ DialogBG {
     anchors.centerIn: parent
     z: 10
     originalWidth: 300
-    originalHeight: 200
+    originalHeight:  200
     property variant currentCountry:null
     property int returned: 0
     property real healthCuts: 0
@@ -16,6 +16,7 @@ DialogBG {
     property real scienceCuts: 0
     property real unemplCuts: 0
     property real pensionCuts: 0
+    property bool cutsVisible: true
     property variant returnList: returnList
 
     ListModel {
@@ -36,6 +37,7 @@ DialogBG {
             anchors.horizontalCenter: parent.horizontalCenter
             color: textColor
             text: "Cuts:"
+            visible: cutsVisible
         }
         Column {
             anchors.horizontalCenter: parent.horizontalCenter
@@ -43,22 +45,27 @@ DialogBG {
             Text {
                 color: textColor
                 text: "Health system: <font color='red'>"+healthCuts.toFixed(2)+"%</font>"
+                visible: healthCuts >= 0.01;
             }
             Text {
                 color: textColor
                 text: "Education: <font color='red'>"+eduCuts.toFixed(2)+"%</font>"
+                visible: eduCuts >= 0.01;
             }
             Text {
                 color: textColor
                 text: "Science/Research: <font color='red'>"+scienceCuts.toFixed(2)+"%</font>"
+                visible: scienceCuts >= 0.01;
             }
             Text {
                 color: textColor
                 text: "Unempl. Benefits: <font color='red'>"+unemplCuts.toFixed(2)+"%</font>"
+                visible: unemplCuts >= 0.01;
             }
             Text {
                 color: textColor
                 text: "Pension System: <font color='red'>"+pensionCuts.toFixed(2)+"%</font>"
+                visible: pensionCuts >= 0.01;
             }
         }
         Button {
@@ -93,12 +100,28 @@ DialogBG {
             activate();
             return;
         }
+        if (cuts.returned <= 0) {
+            returnList.remove(0);
+            activate();
+            return;
+        }
         returned = cuts.returned;
         healthCuts = cuts.healthCuts;
         eduCuts = cuts.eduCuts;
         scienceCuts = cuts.scienceCuts;
         unemplCuts = cuts.unemplCuts;
         pensionCuts = cuts.pensionCuts;
+
+        var cutCount = 1;
+        if (healthCuts >= 0.01) cutCount++;
+        if (eduCuts >= 0.01) cutCount++;
+        if (scienceCuts >= 0.01) cutCount++;
+        if (unemplCuts >= 0.01) cutCount++;
+        if (pensionCuts >= 0.01) cutCount++;
+
+        cutsVisible = cutCount > 1;
+        originalHeight = 80 + 20*cutCount;
+
         currentCountry.acceptCut(cuts);
         returnList.remove(0);
         show();
