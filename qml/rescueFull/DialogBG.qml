@@ -113,7 +113,9 @@ Rectangle {
 
     function hide() {
         state = "hidden"
+        closed();
     }
 
     function started() {}
+    function closed() {}
 }

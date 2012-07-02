@@ -1,4 +1,5 @@
 import QtQuick 1.1
+import MultimediaExports 1.0
 
 DialogBG {
     id: startDialog
@@ -9,6 +10,19 @@ DialogBG {
     z: 10
 
     parent: map
+
+    function started() {
+        beginningSound.play();
+    }
+
+    function closed() {
+//        beginningSound.stop();
+    }
+
+    SoundClip {
+        id: beginningSound
+        source: "snds/start_theme.ogg"
+    }
 
     Column {
         id: contents
@@ -31,7 +45,7 @@ DialogBG {
             color: textColor
             font.pixelSize: 14
             text: "a parody game by Christiaan Janssen"
-            x: 165
+            x: 160
         }
         Button {
             label: "Start"

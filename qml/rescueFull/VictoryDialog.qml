@@ -1,4 +1,5 @@
 import QtQuick 1.1
+import MultimediaExports 1.0
 
 DialogBG {
     id: victoryDialog
@@ -14,6 +15,19 @@ DialogBG {
     onEndingChanged: if (ending) show();
 
     opacity: 0.7
+
+    function started() {
+        endTheme.play();
+    }
+
+    function closed() {
+        endTheme.stop();
+    }
+
+    SoundClip {
+        id: endTheme
+        source: "snds/final_theme.ogg"
+    }
 
     Text {
         id: floatingText

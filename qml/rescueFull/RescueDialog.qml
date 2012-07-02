@@ -1,5 +1,6 @@
 // import QtQuick 1.0 // to target S60 5th Edition or Maemo 5
 import QtQuick 1.1
+import MultimediaExports 1.0
 
 DialogBG {
     id: rescueDialog
@@ -17,6 +18,21 @@ DialogBG {
         if (!currentCountry)
             return;
         countryGain = currentCountry.gain;
+        terminalSound.play();
+    }
+
+    function closed() {
+        terminalSound.stop();
+    }
+
+    SoundClip {
+        id: terminalSound
+        source: "snds/blipz.ogg"
+    }
+
+    SoundClip {
+        id: explodeSound
+        source: "snds/xplosion.ogg"
     }
 
     Column {
@@ -46,6 +62,7 @@ DialogBG {
                 onClicked: {
                     currentCountry.rescue();
                     rescueDialog.hide();
+                    explodeSound.play();
                     returnDialog.activate();
                 }
             }
