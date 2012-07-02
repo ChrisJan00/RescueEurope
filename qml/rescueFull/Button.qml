@@ -71,9 +71,9 @@ Rectangle {
         anchors.fill: parent
         enabled: button.active
         hoverEnabled: true
-        onEntered: button.state = "hovered"
-        onExited: button.state = ""
-        onPressed: button.state = "pressed"
-        onReleased: { button.state = "hovered"; button.clicked(); }
+        onEntered: if (active) button.state = "hovered"
+        onExited: if (active) button.state = ""
+        onPressed: if (active) button.state = "pressed"
+        onReleased: if (active) { button.state = "hovered"; button.clicked(); }
     }
 }

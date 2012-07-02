@@ -1,5 +1,6 @@
 // import QtQuick 1.0 // to target S60 5th Edition or Maemo 5
 import QtQuick 1.1
+import MultimediaExports 1.0
 
 DialogBG {
     id: loanDialog
@@ -25,6 +26,20 @@ DialogBG {
         countryDebt = currentCountry.debt;
         countryInterests = currentCountry.interests;
         loanButton.active = (countryLoan <= funds);
+        if (loanButton.active)
+            coinsSound.play();
+        else
+            singleCoinSound.play();
+    }
+
+    SoundClip {
+        id: coinsSound
+        source: "snds/coins.ogg"
+    }
+
+    SoundClip {
+        id: singleCoinSound
+        source: "snds/onecoin.ogg"
     }
 
     Column {
