@@ -6,6 +6,7 @@ Image {
     property string sourceNormal
     property string sourceHover
     property string sourcePressed
+    property string sourceHighlight
 
     // public
     property string name: ""
@@ -124,24 +125,32 @@ Image {
             }
     }
 
+//    // Status Display
+//    Rectangle {
+//        parent: map
+//        x: country.x + country.width/2 - width/2
+//        y: country.y + country.height/2 - height/2
+//        color: budget/capacity < 0.33? "red" :
+//            budget/capacity < 0.66? "orange" : "green"
+
+//        property int dimension: Math.min(country.width/2, country.height/2)
+//        width: Math.max(6, Math.min(dimension,
+//                                    dimension * budget / capacity + 6))
+
+//        Behavior on width { PropertyAnimation { duration: 500 } }
+//        height: width
+//        radius: width/2
+//        visible: !rescued
+//        border.width: 1
+//        border.color: "black"
+//        z: 2
+//    }
+
     // Status Display
-    Rectangle {
-        parent: map
-        x: country.x + country.width/2 - width/2
-        y: country.y + country.height/2 - height/2
-        color: budget/capacity < 0.33? "red" :
-            budget/capacity < 0.66? "orange" : "green"
-
-        property int dimension: Math.min(country.width/2, country.height/2)
-        width: Math.max(6, Math.min(dimension,
-                                    dimension * budget / capacity + 6))
-
-        Behavior on width { PropertyAnimation { duration: 500 } }
-        height: width
-        radius: width/2
+    Image {
+        source: sourceHighlight
+        opacity: Math.max(0, Math.min(1, 1-budget/capacity))*0.7;
         visible: !rescued
-        border.width: 1
-        border.color: "black"
         z: 2
     }
 

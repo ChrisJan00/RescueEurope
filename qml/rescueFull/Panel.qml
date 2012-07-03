@@ -23,6 +23,8 @@ DialogBG {
         onRestartAll: {
             liveCountries = 27;
             funds = 1000;
+            fundsDisplay.oldFunds = funds;
+            fundsDisplay.displayFunds = funds;
             startDialog.show();
         }
     }
@@ -51,10 +53,41 @@ DialogBG {
     }
 
     Text {
+        id: fundsDisplay
+        property int oldFunds: funds
+        property int newFunds: funds
+        property int displayFunds: funds
         anchors.horizontalCenter: parent.horizontalCenter
-        text: "Your funds: "+root.funds+"M €"
-        y: 10
+        text: "Your funds: " + displayFunds + "M €"
+        y: protaPicture.height + 40
         color: root.textColor
+
+        Behavior on displayFunds {
+                NumberAnimation { duration: 1000 }
+        }
+
+        onNewFundsChanged: {
+            displayFunds = newFunds;
+            if (newFunds > oldFunds)
+                increaseAnimation.start();
+            else
+                decreaseAnimation.start();
+            oldFunds = newFunds;
+        }
+
+        SequentialAnimation {
+            id: increaseAnimation
+            PropertyAction {  target: fundsDisplay; property: "color"; value: Qt.lighter("green"); }
+            PauseAnimation { duration: 1000 }
+            PropertyAction {  target: fundsDisplay; property: "color"; value: root.textColor; }
+        }
+
+        SequentialAnimation {
+            id: decreaseAnimation
+            PropertyAction {  target: fundsDisplay; property: "color"; value: "red"; }
+            PauseAnimation { duration: 1000 }
+            PropertyAction {  target: fundsDisplay; property: "color"; value: root.textColor; }
+        }
     }
 
     Column {
