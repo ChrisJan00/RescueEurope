@@ -12,7 +12,8 @@ Q_DECL_EXPORT int main(int argc, char *argv[])
     if (!mI.isValid())
         return -1;
 
-    qmlRegisterType<SoundClip>("MultimediaExports",1,0,"SoundClip");
+    qmlRegisterType<SoundClip>("SDLMixerWrapper",1,0,"SoundClip");
+    qmlRegisterType<MusicClip>("SDLMixerWrapper",1,0,"MusicClip");
 
     QmlApplicationViewer viewer;
     viewer.setOrientation(QmlApplicationViewer::ScreenOrientationAuto);

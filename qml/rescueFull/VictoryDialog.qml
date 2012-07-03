@@ -1,5 +1,5 @@
 import QtQuick 1.1
-import MultimediaExports 1.0
+import SDLMixerWrapper 1.0
 
 DialogBG {
     id: victoryDialog
@@ -17,18 +17,18 @@ DialogBG {
 
     opacity: 0.7
 
-    function started() {
-        endTheme.play();
-    }
+//    function started() {
+//        endTheme.play();
+//    }
 
-    function closed() {
-        endTheme.stop();
-    }
+//    function closed() {
+//        endTheme.stop();
+//    }
 
-    SoundClip {
-        id: endTheme
-        source: "snds/final_theme.ogg"
-    }
+//    SoundClip {
+//        id: endTheme
+//        source: "snds/final_theme.ogg"
+//    }
 
 //    Text {
 //        id: floatingText

@@ -5,6 +5,7 @@
 #include <SDL/SDL.h>
 #include <SDL/SDL_mixer.h>
 
+void musicFinished();
 
 // Mixer Instance
 bool StartMixer() {
@@ -21,6 +22,8 @@ bool StartMixer() {
         qDebug() << "Unable to initialize audio:" << Mix_GetError();
         return false;
     }
+
+    Mix_HookMusicFinished(musicFinished);
     return true;
 }
 
@@ -36,8 +39,9 @@ MixerInstance::MixerInstance()
 
 MixerInstance::~MixerInstance()
 {
-    if (valid)
+    if (valid) {
         CloseMixer();
+    }
 }
 
 bool MixerInstance::isValid() const
@@ -45,6 +49,7 @@ bool MixerInstance::isValid() const
     return valid;
 }
 
+///////////////////////////////////////////////////////////////////////////
 // Sound Clip Object
 class SoundClipPrivate {
 public:
@@ -116,5 +121,123 @@ void SoundClip::stop()
         Mix_HaltChannel(d->channel);
         d->channel = -1;
     }
+}
+
+///////////////////////////////////////////////////////////////////////////
+// Music Clip Object
+class MusicClipPrivate {
+public:
+    QString fileName;
+    Mix_Music *music;
+    bool isPlaying;
+};
+
+struct MusicControl {
+    QList <MusicClip *> allMusicInstances;
+    QList <MusicClip *> musicQueue;
+    int musicCount;
+} musicControl;
+
+void musicFinished() {
+    foreach (MusicClip *clip, musicControl.allMusicInstances)
+        clip->notifyFinish();
+
+    if (musicControl.musicCount == 0 && !musicControl.musicQueue.isEmpty()) {
+        MusicClip *nextSong = musicControl.musicQueue.first();
+        musicControl.musicQueue.removeAt(0);
+        nextSong->play();
+    }
+}
+
+
+MusicClip::MusicClip(QObject *parent) : QObject(parent)
+{
+    d = new MusicClipPrivate;
+    d->music = 0;
+    d->isPlaying = false;
+    musicControl.allMusicInstances.append(this);
+}
+
+MusicClip::~MusicClip()
+{
+    stop();
+    if (d->music) {
+        Mix_FreeMusic(d->music);
+    }
+    musicControl.allMusicInstances.removeOne(this);
+    delete d;
+}
+
+QString MusicClip::source() const
+{
+    return d->fileName;
+}
+
+void MusicClip::setSource(const QString &newSource)
+{
+    if (playing())
+        stop();
+
+    if (source() != newSource) {
+        if (d->music) {
+            Mix_FreeMusic(d->music);
+        }
+        d->music = Mix_LoadMUS(newSource.toLocal8Bit().data());
+        if(!d->music) {
+            qDebug() << "Unable to load Music file:" << Mix_GetError();
+        } else {
+            d->fileName = newSource;
+            emit sourceChanged();
+        }
+    }
+}
+
+void MusicClip::notifyFinish()
+{
+    if (d->isPlaying) {
+        d->isPlaying = false;
+        musicControl.musicCount--;
+        emit playingChanged();
+    }
+}
+bool MusicClip::playing() const
+{
+    return d->isPlaying;
+}
+
+void MusicClip::play()
+{
+    loop(0);
+}
+
+void MusicClip::stop()
+{
+    if (d->isPlaying) {
+        Mix_HaltMusic();
+    }
+}
+
+void MusicClip::enqueue()
+{
+    if (musicControl.musicCount == 0)
+        play();
+    else
+        musicControl.musicQueue.append(this);
+}
+
+void MusicClip::loop(int n)
+{
+    if(Mix_PlayMusic(d->music, n) == -1) {
+        qDebug() << "Unable to play Music file:" << Mix_GetError();
+        return;
+    }
+    d->isPlaying = true;
+    musicControl.musicCount++;
+}
+
+void MusicClip::fadeOut(int ms)
+{
+    if (d->isPlaying)
+        Mix_FadeOutMusic(ms);
 }
 

@@ -1,5 +1,5 @@
 import QtQuick 1.1
-import MultimediaExports 1.0
+import SDLMixerWrapper 1.0
 
 DialogBG {
     id: startDialog
@@ -12,14 +12,14 @@ DialogBG {
     parent: map
 
     function started() {
-        beginningSound.play();
+        beginningSound.enqueue();
     }
 
     function closed() {
 //        beginningSound.stop();
     }
 
-    SoundClip {
+    MusicClip {
         id: beginningSound
         source: "snds/start_theme.ogg"
     }
