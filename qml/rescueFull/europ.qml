@@ -20,8 +20,7 @@ Rectangle {
     property bool dialogOpen: loanDialog.isOpen ||
                               rescueDialog.isOpen ||
                               returnDialog.isOpen ||
-                              startDialog.isOpen //||
-//                              victoryDialog.isOpen
+                              startDialog.isOpen
 
     Component.onCompleted: {
         totalCountries = 27;
@@ -51,8 +50,8 @@ Rectangle {
         id: returnDialog
     }
 
-    VictoryDialog {
-        id: victoryDialog
+    VictoryScreen {
+        id: victoryScreen
     }
 
     StartDialog {

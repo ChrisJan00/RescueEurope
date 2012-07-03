@@ -8,6 +8,7 @@ DialogBG {
     originalHeight: 100
     anchors.centerIn: parent
     z: 10
+    property bool active: false
 
     parent: map
 
@@ -29,18 +30,18 @@ DialogBG {
         source: "snds/final_theme.ogg"
     }
 
-    Text {
-        id: floatingText
-        font.pixelSize: 24
-        parent: map
-        z: 11
-        x: victoryDialog.x + 10
-        y: victoryDialog.y + 12
-        color: textColor
-        text: "YOU WIN! YOU RESCUED ALL EUROPE!"
-        opacity: contents.opacity
-        visible: victoryDialog.visible
-    }
+//    Text {
+//        id: floatingText
+//        font.pixelSize: 24
+//        parent: map
+//        z: 11
+//        x: victoryDialog.x + 10
+//        y: victoryDialog.y + 12
+//        color: textColor
+//        text: "YOU WIN! YOU RESCUED ALL EUROPE!"
+//        opacity: contents.opacity
+//        visible: victoryDialog.visible
+//    }
 
     Column {
         id: contents
@@ -56,6 +57,7 @@ DialogBG {
         Button {
             label: "Start New Game"
             anchors.horizontalCenter: parent.horizontalCenter
+            active: victoryDialog.active
             onClicked:  {
                 hide();
                 restartAll();

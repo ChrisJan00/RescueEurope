@@ -21,7 +21,7 @@ DialogBG {
     Connections {
         target: root
         onRestartAll: {
-            liveCountries = 27;
+            liveCountries = 1;
             funds = 1000;
             fundsDisplay.oldFunds = funds;
             fundsDisplay.displayFunds = funds;

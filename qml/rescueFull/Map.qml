@@ -21,7 +21,7 @@ Image {
             newLoan = 900
             loanDecay = 10
             interests = 1.1
-            interestDecay= 0.1
+            interestDecay = 0.01
             returnDelay = 4000
             decayDelay = 3000
 
@@ -55,7 +55,7 @@ Image {
             newLoan = 900
             loanDecay = 10
             interests = 1.1
-            interestDecay = 0.1
+            interestDecay = 0.01
             returnDelay = 4000
             decayDelay = 3000
             // internal
@@ -87,7 +87,7 @@ Image {
             newLoan = 900
             loanDecay = 10
             interests = 1.1
-            interestDecay = 0.1
+            interestDecay = 0.01
             returnDelay = 4000
             decayDelay = 3000
             // internal
@@ -119,7 +119,7 @@ Image {
             newLoan = 900
             loanDecay = 10
             interests = 1.1
-            interestDecay = 0.1
+            interestDecay = 0.01
             returnDelay = 4000
             decayDelay = 3000
             // internal
@@ -151,7 +151,7 @@ Image {
             newLoan = 900
             loanDecay = 10
             interests = 1.1
-            interestDecay = 0.1
+            interestDecay = 0.01
             returnDelay = 4000
             decayDelay = 3000
             // internal
@@ -183,7 +183,7 @@ Image {
             newLoan = 100
             loanDecay = 10
             interests = 1.1
-            interestDecay = 0.1
+            interestDecay = 0.01
             returnDelay = 4000
             decayDelay = 3000
             // internal
@@ -215,7 +215,7 @@ Image {
             newLoan = 900
             loanDecay = 10
             interests = 1.1
-            interestDecay = 0.1
+            interestDecay = 0.01
             returnDelay = 4000
             decayDelay = 3000
             // internal
@@ -247,7 +247,7 @@ Image {
             newLoan = 900
             loanDecay = 10
             interests = 1.1
-            interestDecay = 0.1
+            interestDecay = 0.01
             returnDelay = 4000
             decayDelay = 3000
             // internal
@@ -279,7 +279,7 @@ Image {
             newLoan = 900
             loanDecay = 10
             interests = 1.1
-            interestDecay = 0.1
+            interestDecay = 0.01
             returnDelay = 4000
             decayDelay = 3000
             // internal
@@ -311,7 +311,7 @@ Image {
             newLoan = 900
             loanDecay = 10
             interests = 1.1
-            interestDecay = 0.1
+            interestDecay = 0.01
             returnDelay = 4000
             decayDelay = 3000
             // internal
@@ -343,7 +343,7 @@ Image {
             newLoan = 900
             loanDecay = 10
             interests = 1.1
-            interestDecay = 0.1
+            interestDecay = 0.01
             returnDelay = 4000
             decayDelay = 3000
             // internal
@@ -375,7 +375,7 @@ Image {
             newLoan = 900
             loanDecay = 10
             interests = 1.1
-            interestDecay = 0.1
+            interestDecay = 0.01
             returnDelay = 4000
             decayDelay = 3000
             // internal
@@ -407,7 +407,7 @@ Image {
             newLoan = 900
             loanDecay = 10
             interests = 1.1
-            interestDecay = 0.1
+            interestDecay = 0.01
             returnDelay = 4000
             decayDelay = 3000
             // internal
@@ -439,7 +439,7 @@ Image {
             newLoan = 900
             loanDecay = 10
             interests = 1.1
-            interestDecay = 0.1
+            interestDecay = 0.01
             returnDelay = 4000
             decayDelay = 3000
             // internal
@@ -471,7 +471,7 @@ Image {
             newLoan = 900
             loanDecay = 10
             interests = 1.1
-            interestDecay = 0.1
+            interestDecay = 0.01
             returnDelay = 4000
             decayDelay = 3000
             // internal
@@ -503,7 +503,7 @@ Image {
             newLoan = 900
             loanDecay = 10
             interests = 1.1
-            interestDecay = 0.1
+            interestDecay = 0.01
             returnDelay = 4000
             decayDelay = 3000
             // internal
@@ -535,7 +535,7 @@ Image {
             newLoan = 900
             loanDecay = 10
             interests = 1.1
-            interestDecay = 0.1
+            interestDecay = 0.01
             returnDelay = 4000
             decayDelay = 3000
             // internal
@@ -571,7 +571,7 @@ Image {
             newLoan = 900
             loanDecay = 10
             interests = 1.1
-            interestDecay = 0.1
+            interestDecay = 0.01
             returnDelay = 4000
             decayDelay = 3000
             // internal
@@ -605,7 +605,7 @@ Image {
             newLoan = 900
             loanDecay = 10
             interests = 1.1
-            interestDecay = 0.1
+            interestDecay = 0.01
             returnDelay = 4000
             decayDelay = 3000
             // internal
@@ -639,7 +639,7 @@ Image {
             newLoan = 900
             loanDecay = 10
             interests = 1.1
-            interestDecay = 0.1
+            interestDecay = 0.01
             returnDelay = 4000
             decayDelay = 3000
             // internal
@@ -673,7 +673,7 @@ Image {
             newLoan = 900
             loanDecay = 10
             interests = 1.1
-            interestDecay = 0.1
+            interestDecay = 0.01
             returnDelay = 4000
             decayDelay = 3000
             // internal
@@ -707,7 +707,7 @@ Image {
             newLoan = 900
             loanDecay = 10
             interests = 1.1
-            interestDecay = 0.1
+            interestDecay = 0.01
             returnDelay = 4000
             decayDelay = 3000
             // internal
@@ -741,7 +741,7 @@ Image {
             newLoan = 900
             loanDecay = 10
             interests = 1.1
-            interestDecay = 0.1
+            interestDecay = 0.01
             returnDelay = 4000
             decayDelay = 3000
             // internal
@@ -775,7 +775,7 @@ Image {
             newLoan = 900
             loanDecay = 10
             interests = 1.1
-            interestDecay = 0.1
+            interestDecay = 0.01
             returnDelay = 4000
             decayDelay = 3000
             // internal
@@ -809,7 +809,7 @@ Image {
             newLoan = 900
             loanDecay = 10
             interests = 1.1
-            interestDecay = 0.1
+            interestDecay = 0.01
             returnDelay = 4000
             decayDelay = 3000
             // internal
@@ -843,7 +843,7 @@ Image {
             newLoan = 900
             loanDecay = 10
             interests = 1.1
-            interestDecay = 0.1
+            interestDecay = 0.01
             returnDelay = 4000
             decayDelay = 3000
             // internal
@@ -877,7 +877,7 @@ Image {
             newLoan = 900
             loanDecay = 10
             interests = 1.1
-            interestDecay = 0.1
+            interestDecay = 0.01
             returnDelay = 4000
             decayDelay = 3000
             // internal
