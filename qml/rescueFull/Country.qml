@@ -187,6 +187,7 @@ Image {
                 "unemplCuts" : Math.random() * unempl,
                 "pensionCuts" : Math.random() * pension
             })
+            toReturn = 0;
             returnDialog.activate();
         }
     }
@@ -214,7 +215,6 @@ Image {
         budget -= cuts.returned;
         funds += cuts.returned;
         debt -= cuts.returned;
-        toReturn = 0;
     }
 
     function doCut()
