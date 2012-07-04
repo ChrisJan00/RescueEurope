@@ -17,6 +17,8 @@ DialogBG {
                                 protaPicture.state = "superrich";
                             else if (liveCountries/totalCountries < 0.66)
                                 protaPicture.state = "rich";
+                            else
+                                protaPicture.state = "normal"
 
     Connections {
         target: root
@@ -35,6 +37,7 @@ DialogBG {
         source: "pics/rich_guy1.png"
         y: 30
         states: [
+            State { name: "normal" },
             State {
                 name: "rich"
                 PropertyChanges {
