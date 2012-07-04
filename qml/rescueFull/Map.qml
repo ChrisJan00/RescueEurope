@@ -181,7 +181,7 @@ Image {
             debt = 500
             capacity = Math.random()*2000 // ocapacity = 20000
             newLoan = 100
-            loanDecay = 10
+            loanDecay = 00
             interests = 1.1
             interestDecay = 0.01
             returnDelay = 4000

@@ -17,8 +17,9 @@ Item {
     Connections {
         target: root
         onRestartAll: {
+            hide();
             victoryDialog.opacity = 0;
-            victoryDialog.active = false;
+            victoryDialog.active = true;
             victoryDialog.state = ""
             victoryDialog.visible = true;
             floatingText.style = Text.Outline
@@ -27,56 +28,87 @@ Item {
 
     function show() {
         visible = true;
-        started();
+        endTheme.enqueue();
         victoryAnimation.start();
     }
 
-    function hide() {}
-
-    function started() {
-        endTheme.enqueue();
-    }
-
-    function closed() {
+    function hide() {
+        fireworks.stop();
         endTheme.stop();
+        visible = false;
     }
 
     MusicClip {
         id: endTheme
         source: "snds/final_theme.ogg"
+        onPlayingChanged: if (!playing)
+                              showDialogAnimation.start();
     }
 
     SequentialAnimation {
         id: victoryAnimation
         PropertyAction {
             target: floatingText
+            property: "y"
+            value: -40
+        }
+        PropertyAction {
+            target: floatingText
             property: "visible"
             value: true
         }
+
+        PauseAnimation { duration: 3000 }
+
+        ScriptAction {
+            script: fireworks.activate();
+        }
+
         NumberAnimation {
             target: floatingText
             property: "y"
-            duration: 15000
-            from: -20
+            duration: 20000
+            from: -40
             to: victoryScreen.height/2 - 50 + 12
         }
+//        PropertyAnimation {
+//            target: victoryDialog
+//            property: "opacity"
+//            from: 0
+//            to: 1
+//            duration: 15000
+//        }
+//        PropertyAction {
+//            target: victoryDialog
+//            property: "active"
+//            value: true
+//        }
+//        PropertyAction {
+//            target: floatingText
+//            property: "visible"
+//            value: false
+//        }
+    }
+
+    SequentialAnimation {
+        id: showDialogAnimation
         PropertyAnimation {
             target: victoryDialog
             property: "opacity"
             from: 0
             to: 1
-            duration: 15000
-        }
-        PropertyAction {
-            target: victoryDialog
-            property: "active"
-            value: true
+            duration: 1000
         }
         PropertyAction {
             target: floatingText
             property: "visible"
             value: false
         }
+    }
+
+    Fireworks {
+        id: fireworks
+        z:9
     }
 
     Text {
