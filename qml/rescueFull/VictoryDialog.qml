@@ -60,7 +60,7 @@ DialogBG {
             text: {
                 var mins = Math.floor(root.elapsedTime / 60000);
                 var secs = (root.elapsedTime - mins * 60000) / 1000;
-                return "Final earnings: " + root.funds + "M € , Total Time: "+ mins + " min " + secs +" secs";
+                return "Final earnings: " + root.funds + " M €, Total Time: "+ mins + " min " + secs +" secs";
             }
         }
         Button {

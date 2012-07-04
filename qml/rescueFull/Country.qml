@@ -125,33 +125,65 @@ Image {
             }
     }
 
-//    // Status Display
-//    Rectangle {
-//        parent: map
-//        x: country.x + country.width/2 - width/2
-//        y: country.y + country.height/2 - height/2
-//        color: budget/capacity < 0.33? "red" :
-//            budget/capacity < 0.66? "orange" : "green"
-
-//        property int dimension: Math.min(country.width/2, country.height/2)
-//        width: Math.max(6, Math.min(dimension,
-//                                    dimension * budget / capacity + 6))
-
-//        Behavior on width { PropertyAnimation { duration: 500 } }
-//        height: width
-//        radius: width/2
-//        visible: !rescued
-//        border.width: 1
-//        border.color: "black"
-//        z: 2
-//    }
-
     // Status Display
     Image {
         source: sourceHighlight
         opacity: Math.max(0, Math.min(1, 1-budget/capacity))*0.7;
         visible: !rescued
         z: 2
+    }
+
+    Text {
+        id: gainText
+        x: country.width/2 - width/2
+        y: startY;
+        z: 3
+        opacity: 0
+        color: root.textColor
+        style: Text.Outline
+        property int startY: country.height/2 - height/2;
+        property color positiveColor: "green"
+        property color negativeColor: "red"
+        function launch( amount )
+        {
+            if (amount == 0)
+                return;
+
+            if (amount > 0) {
+                styleColor = positiveColor;
+                text = "+" + amount + " M €";
+            } else {
+                styleColor = negativeColor;
+                text = amount + " M €";
+            }
+            gainAnimation.restart();
+        }
+
+        ParallelAnimation {
+            id: gainAnimation
+
+            PropertyAnimation {
+                target: gainText
+                property: "y"
+                from: gainText.startY
+                to: gainText.startY - 80
+                duration: 2000
+            }
+            PropertyAnimation {
+                target: gainText
+                property: "opacity"
+                easing.type: Easing.InQuart
+                from: 1
+                to: 0
+                duration: 2000
+            }
+        }
+    }
+
+    function incrementBudget(amount)
+    {
+        budget += Math.floor(amount);
+        gainText.launch( Math.floor(amount) );
     }
 
     function getLoan(activeInterests, activeDebt, activeLoan)
@@ -204,7 +236,8 @@ Image {
 
     function acceptCut(cuts)
     {
-        budget *= (100 + cuts.healthCuts + cuts.eduCuts +
+        var amount = budget *
+                (cuts.healthCuts + cuts.eduCuts +
                 cuts.scienceCuts + cuts.unemplCuts +
                 cuts.pensionCuts)/100.0;
         health -= cuts.healthCuts;
@@ -212,26 +245,10 @@ Image {
         science -= cuts.scienceCuts;
         unempl -= cuts.unemplCuts;
         pension -= cuts.pensionCuts;
-        budget -= cuts.returned;
+        amount -= cuts.returned;
         funds += cuts.returned;
         debt -= cuts.returned;
-    }
-
-    function doCut()
-    {
-        returnDialog.healthCuts = Math.random() * health;
-        returnDialog.eduCuts = Math.random() * edu;
-        returnDialog.scienceCuts = Math.random() * science;
-        returnDialog.unemplCuts = Math.random() * unempl;
-        returnDialog.pensionCuts = Math.random() * pension;
-        budget *= (100 + returnDialog.healthCuts + returnDialog.eduCuts +
-                returnDialog.scienceCuts + returnDialog.unemplCuts +
-                returnDialog.pensionCuts)/100.0;
-        health -= returnDialog.healthCuts;
-        edu -= returnDialog.eduCuts;
-        science -= returnDialog.scienceCuts;
-        unempl -= returnDialog.unemplCuts;
-        pension -= returnDialog.pensionCuts;
+        incrementBudget( amount );
     }
 
     function rescue()
@@ -253,5 +270,6 @@ Image {
         interests += interestDecay;
         newLoan += loanDecay;
         //budget -= newLoan/interests;
+        // incrementBudget( -newLoan/interests);
     }
 }

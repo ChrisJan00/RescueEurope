@@ -55,44 +55,6 @@ DialogBG {
         ]
     }
 
-    Text {
-        id: fundsDisplay
-        property int oldFunds: funds
-        property int newFunds: funds
-        property int displayFunds: funds
-        anchors.horizontalCenter: parent.horizontalCenter
-        text: "Your funds: " + displayFunds + "M €"
-        y: protaPicture.height + 40
-        color: root.textColor
-
-        Behavior on displayFunds {
-                NumberAnimation { duration: 1000 }
-        }
-
-        onNewFundsChanged: {
-            displayFunds = newFunds;
-            if (newFunds > oldFunds)
-                increaseAnimation.start();
-            else
-                decreaseAnimation.start();
-            oldFunds = newFunds;
-        }
-
-        SequentialAnimation {
-            id: increaseAnimation
-            PropertyAction {  target: fundsDisplay; property: "color"; value: Qt.lighter("green"); }
-            PauseAnimation { duration: 1000 }
-            PropertyAction {  target: fundsDisplay; property: "color"; value: root.textColor; }
-        }
-
-        SequentialAnimation {
-            id: decreaseAnimation
-            PropertyAction {  target: fundsDisplay; property: "color"; value: "red"; }
-            PauseAnimation { duration: 1000 }
-            PropertyAction {  target: fundsDisplay; property: "color"; value: root.textColor; }
-        }
-    }
-
     Column {
         anchors.horizontalCenter: parent.horizontalCenter
         y: 280
@@ -172,8 +134,97 @@ DialogBG {
         }
     }
 
+    Text {
+        id: fundsDisplay
+        property int oldFunds: funds
+        property int newFunds: funds
+        property int displayFunds: funds
+        anchors.horizontalCenter: parent.horizontalCenter
+        text: "Your funds: " + displayFunds + "M €"
+        y: protaPicture.height + 40
+        color: root.textColor
+
+        Behavior on displayFunds {
+                NumberAnimation { duration: 1000 }
+        }
+
+        onNewFundsChanged: {
+            displayFunds = newFunds;
+            gainText.launch(newFunds - oldFunds);
+            if (newFunds > oldFunds)
+                increaseAnimation.start();
+            else if (newFunds < oldFunds)
+                decreaseAnimation.start();
+            oldFunds = newFunds;
+        }
+
+        SequentialAnimation {
+            id: increaseAnimation
+            PropertyAction {  target: fundsDisplay; property: "color"; value: Qt.lighter("green"); }
+            PauseAnimation { duration: 1000 }
+            PropertyAction {  target: fundsDisplay; property: "color"; value: root.textColor; }
+        }
+
+        SequentialAnimation {
+            id: decreaseAnimation
+            PropertyAction {  target: fundsDisplay; property: "color"; value: "red"; }
+            PauseAnimation { duration: 1000 }
+            PropertyAction {  target: fundsDisplay; property: "color"; value: root.textColor; }
+        }
+
+        Text {
+            id: gainText
+            x: fundsDisplay.width/2 - width/2
+            y: startY;
+            z: 3
+            opacity: 0
+            color: root.textColor
+            //        style: Text.Outline
+            property int startY: fundsDisplay.height/2 - height/2;
+            property color positiveColor: "green"
+            property color negativeColor: "red"
+            property int direction: 1
+            function launch( amount )
+            {
+                if (amount == 0)
+                    return;
+
+                if (amount > 0) {
+                    color = positiveColor;
+                    text = "+" + amount + " M €";
+                    direction = 1;
+                } else {
+                    color = negativeColor;
+                    text = amount + " M €";
+                    direction = -1;
+                }
+                gainAnimation.restart();
+            }
+
+            ParallelAnimation {
+                id: gainAnimation
+
+                PropertyAnimation {
+                    target: gainText
+                    property: "y"
+                    from: gainText.startY - 16 * gainText.direction
+                    to: gainText.startY - 40 * gainText.direction;
+                    duration: 2000
+                }
+                PropertyAnimation {
+                    target: gainText
+                    property: "opacity"
+                    easing.type: Easing.InQuart
+                    from: 1
+                    to: 0
+                    duration: 2000
+                }
+            }
+        }
+    }
+
     Item {
-        anchors.verticalCenter:parent.verticalCenter
+        y: parent.height/2 + 50
         x: 30
         Text {
             rotation: 45
