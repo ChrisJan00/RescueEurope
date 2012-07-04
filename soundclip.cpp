@@ -214,6 +214,7 @@ void MusicClip::stop()
 {
     if (d->isPlaying) {
         Mix_HaltMusic();
+        musicFinished();
     }
 }
 

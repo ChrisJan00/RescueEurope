@@ -16,7 +16,7 @@ DialogBG {
     }
 
     function closed() {
-        beginningSound.stop();
+//        beginningSound.stop();
         root.startTime = new Date().getTime();
     }
 
