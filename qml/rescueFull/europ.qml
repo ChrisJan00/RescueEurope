@@ -9,6 +9,9 @@ Rectangle {
 
     signal restartAll
 
+    property variant startTime;
+    property variant elapsedTime;
+
     property color textColor: "yellow"
 
     ////////////////// PLAYER PROPERTIES
@@ -27,7 +30,6 @@ Rectangle {
         restartAll();
     }
     ////////////////////
-
 
 
     Panel {

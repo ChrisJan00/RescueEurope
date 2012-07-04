@@ -27,6 +27,7 @@ Item {
     }
 
     function show() {
+        root.elapsedTime = new Date().getTime() - root.startTime;
         visible = true;
         endTheme.enqueue();
         victoryAnimation.start();
@@ -69,25 +70,8 @@ Item {
             property: "y"
             duration: 20000
             from: -40
-            to: victoryScreen.height/2 - 50 + 12
+            to: victoryScreen.height/2 - 50 + 6
         }
-//        PropertyAnimation {
-//            target: victoryDialog
-//            property: "opacity"
-//            from: 0
-//            to: 1
-//            duration: 15000
-//        }
-//        PropertyAction {
-//            target: victoryDialog
-//            property: "active"
-//            value: true
-//        }
-//        PropertyAction {
-//            target: floatingText
-//            property: "visible"
-//            value: false
-//        }
     }
 
     SequentialAnimation {
