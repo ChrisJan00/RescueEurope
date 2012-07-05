@@ -50,6 +50,7 @@ DialogBG {
             visible: cutsVisible
         }
         Column {
+            visible: cutsVisible
             anchors.horizontalCenter: parent.horizontalCenter
             spacing: 2
             Text {
@@ -130,6 +131,7 @@ DialogBG {
         if (pensionCuts >= 0.01) cutCount++;
 
         cutsVisible = cutCount > 1;
+        if (!cutsVisible) cutCount = 0;
         originalHeight = 80 + 20*cutCount;
 
         currentCountry.acceptCut(cuts);
