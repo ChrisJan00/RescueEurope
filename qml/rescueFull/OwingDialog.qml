@@ -9,9 +9,10 @@ DialogBG {
     anchors.centerIn: parent
     z: 10
     originalWidth: 300
-    originalHeight:  200
+    originalHeight:  65
 
     property variant currentCountry:null
+    property int amount
 
     function started() {
 //        cashSound.play();
@@ -46,17 +47,19 @@ DialogBG {
     function activate(country) {
         if (dialogOpen)
             return;
-        currentCountry = cuts.currentCountry;
+        currentCountry = country;
         // If the country is bankrupt, ignore and go to next
-        if (currentCountry.budget <= 0) {
-            if (!currentCountry.rescued) {
-                rescueDialog.currentCountry = currentCountry;
-                rescueDialog.show();
-                return;
-            }
+//        if (currentCountry.budget <= 0) {
+//            if (!currentCountry.rescued) {
+//                rescueDialog.currentCountry = currentCountry;
+//                rescueDialog.show();
+//                return;
+//            }
+//            return;
+//        }
+        amount = currentCountry.toReturn;
+        if (amount <= 0)
             return;
-        }
-
         show();
     }
 }

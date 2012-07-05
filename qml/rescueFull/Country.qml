@@ -105,7 +105,9 @@ Image {
         onPressed: {
             if (!rescued) {
                 country.state = "pressed";
-                if (budget > 0 && loanDialog.state=="hidden") {
+                if (budget > 0 && toReturn > 0) {
+                    owingDialog.activate(country);
+                } else if (budget > 0 && loanDialog.state=="hidden") {
                     loanDialog.currentCountry = country;
                     loanDialog.show();
                     if (!returnToNormalTimer.running)
@@ -216,7 +218,6 @@ Image {
             if (rescued)
                 return;
             returnDialog.returnList.append(generateCut())
-            toReturn = 0;
             returnDialog.activate();
         }
     }
@@ -277,6 +278,7 @@ Image {
             debt = 0;
         }
         incrementBudget( -cuts.returned );
+        toReturn = 0;
     }
 
     function acceptCut(cuts)

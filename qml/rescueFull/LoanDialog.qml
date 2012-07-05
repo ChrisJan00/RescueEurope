@@ -20,6 +20,11 @@ DialogBG {
     function started() {
         if (!currentCountry)
             return;
+        if (currentCountry.toReturn > 0) {
+            hide();
+            owingDialog.activate(currentCountry);
+            return;
+        }
 
         countryName = currentCountry.name;
         countryLoan = currentCountry.newLoan;

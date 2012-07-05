@@ -23,6 +23,7 @@ Rectangle {
     property bool dialogOpen: loanDialog.isOpen ||
                               rescueDialog.isOpen ||
                               returnDialog.isOpen ||
+                              owingDialog.isOpen ||
                               startDialog.isOpen
 
     Component.onCompleted: {
@@ -42,6 +43,10 @@ Rectangle {
 
     LoanDialog {
         id: loanDialog
+    }
+
+    OwingDialog {
+        id: owingDialog
     }
 
     RescueDialog {
