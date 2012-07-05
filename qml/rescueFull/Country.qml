@@ -31,6 +31,8 @@ Image {
     property real pension: Math.random() * 20
     property bool canCut: true
     property int gain: Math.max(capacity + budget, capacity * 0.9)
+    property int extraGain: 0
+    property bool showGains: false
 
     source: sourceNormal
     states: [
@@ -134,14 +136,16 @@ Image {
     }
 
     Text {
+        parent: map
         id: gainText
-        x: country.width/2 - width/2
+        x: country.x + country.width/2 - width/2
+        property int startY: country.y + country.height/2 - height/2;
         y: startY;
-        z: 3
+        z: 5
         opacity: 0
         color: root.textColor
         style: Text.Outline
-        property int startY: country.height/2 - height/2;
+
         property color positiveColor: "green"
         property color negativeColor: "red"
         function launch( amount )
@@ -183,7 +187,8 @@ Image {
     function incrementBudget(amount)
     {
         budget += Math.floor(amount);
-        gainText.launch( Math.floor(amount) );
+        if (showGains)
+            gainText.launch( Math.floor(amount) );
     }
 
     function getLoan(activeInterests, activeDebt, activeLoan)
@@ -210,15 +215,7 @@ Image {
         onTriggered: {
             if (rescued)
                 return;
-            returnDialog.returnList.append({
-                "currentCountry" : country,
-                "returned" : toReturn,
-                "healthCuts" : Math.random() * health,
-                "eduCuts" : Math.random() * edu,
-                "scienceCuts" : Math.random() * science,
-                "unemplCuts" : Math.random() * unempl,
-                "pensionCuts" : Math.random() * pension
-            })
+            returnDialog.returnList.append(generateCut())
             toReturn = 0;
             returnDialog.activate();
         }
@@ -229,14 +226,55 @@ Image {
         running: true
         repeat: true
         interval: decayDelay
+        triggeredOnStart: true
         onTriggered: {
             decay();
+            showGains = true;
         }
+    }
+
+    function initInternal()
+    {
+        budget = capacity
+        rescued = false
+        toReturn = 0
+        health = Math.random() * 20
+        edu = Math.random() * 8
+        science = Math.random() * 4
+        unempl = Math.random() * 20
+        pension = Math.random() * 20
+        canCut = true
+        extraGain = 0
+        showGains = false;
+    }
+
+    function generateCut()
+    {
+        return {
+            "currentCountry" : country,
+            "returned" : toReturn,
+            "healthCuts" : Math.random() * health,
+            "eduCuts" : Math.random() * edu,
+            "scienceCuts" : Math.random() * science,
+            "unemplCuts" : Math.random() * unempl,
+            "pensionCuts" : Math.random() * pension
+        }
+    }
+
+    function acceptLoan(cuts)
+    {
+        funds += cuts.returned;
+        debt -= cuts.returned;
+        if (debt < 0) {
+            extraGain += -debt;
+            debt = 0;
+        }
+        incrementBudget( -cuts.returned );
     }
 
     function acceptCut(cuts)
     {
-        var amount = budget *
+        extraGain += budget *
                 (cuts.healthCuts + cuts.eduCuts +
                 cuts.scienceCuts + cuts.unemplCuts +
                 cuts.pensionCuts)/100.0;
@@ -245,10 +283,7 @@ Image {
         science -= cuts.scienceCuts;
         unempl -= cuts.unemplCuts;
         pension -= cuts.pensionCuts;
-        amount -= cuts.returned;
-        funds += cuts.returned;
-        debt -= cuts.returned;
-        incrementBudget( amount );
+
     }
 
     function rescue()
@@ -267,8 +302,21 @@ Image {
     {
         if (rescued)
             return;
-        interests += interestDecay;
-        newLoan += loanDecay;
+        interests += interestDecay * (Math.random() - 0.5) * 2;
+        newLoan += loanDecay * Math.random();
+
+        debt += newLoan * Math.random();
+
+        acceptCut(generateCut());
+
+        var debtCut = Math.min(budget/2, debt/2)
+        if (Math.floor(debtCut) > 1) {
+            debt -= debtCut;
+            extraGain -= debtCut;
+        }
+
+        incrementBudget(extraGain);
+        extraGain = 0;
         //budget -= newLoan/interests;
         // incrementBudget( -newLoan/interests);
     }

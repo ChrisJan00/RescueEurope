@@ -133,6 +133,7 @@ DialogBG {
         originalHeight = 80 + 20*cutCount;
 
         currentCountry.acceptCut(cuts);
+        currentCountry.acceptLoan(cuts);
         returnList.remove(0);
         show();
     }

@@ -27,6 +27,7 @@ DialogBG {
             funds = 1000;
             fundsDisplay.oldFunds = funds;
             fundsDisplay.displayFunds = funds;
+            currentCountry = null;
             startDialog.show();
         }
     }
