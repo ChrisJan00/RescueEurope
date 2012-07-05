@@ -235,6 +235,13 @@ Image {
 
     function initInternal()
     {
+        newLoan = capacity * (5 + 8 * Math.random()) / 100
+        loanDecay = 100* newLoan / capacity / (Math.random()+1)
+        interests = 1+capacity/10000
+        interestDecay = interests / 100
+        returnDelay = 3000 * (1 + Math.random()*2)
+        decayDelay = 4000 * (1 + Math.random()*4)
+
         budget = capacity
         rescued = false
         toReturn = 0

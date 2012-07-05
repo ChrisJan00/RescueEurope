@@ -18,12 +18,6 @@ Image {
         function restartCountry() {
             debt = 100
             capacity = 10000 * (1+Math.random()/2);
-            newLoan = capacity * (5 + 8 * Math.random()) / 100
-            loanDecay = 100* newLoan / capacity / (Math.random()+1)
-            interests = 1+capacity/10000
-            interestDecay = interests / 100
-            returnDelay = 3000 * (1 + Math.random()*2)
-            decayDelay = 4000 * (1 + Math.random()*4)
             initInternal();
         }
 
@@ -42,12 +36,6 @@ Image {
         function restartCountry() {
             debt = 100
             capacity = 7000 * (1+Math.random()/2);
-            newLoan = capacity * (5 + 8 * Math.random()) / 100
-            loanDecay = 100* newLoan / capacity / (Math.random()+1)
-            interests = 1+capacity/10000
-            interestDecay = interests / 100
-            returnDelay = 3000 * (1 + Math.random()*2)
-            decayDelay = 4000 * (1 + Math.random()*4)
             initInternal();
         }
 
@@ -65,12 +53,6 @@ Image {
         function restartCountry() {
             debt = 300
             capacity = 1000 * (1+Math.random()/2);
-            newLoan = capacity * (5 + 8 * Math.random()) / 100
-            loanDecay = 100* newLoan / capacity / (Math.random()+1)
-            interests = 1+capacity/10000
-            interestDecay = interests / 100
-            returnDelay = 3000 * (1 + Math.random()*2)
-            decayDelay = 4000 * (1 + Math.random()*4)
             initInternal();
         }
 
@@ -88,12 +70,6 @@ Image {
         function restartCountry() {
             debt = 130
             capacity = 3500 * (1+Math.random()/2);
-            newLoan = capacity * (5 + 8 * Math.random()) / 100
-            loanDecay = 100* newLoan / capacity / (Math.random()+1)
-            interests = 1+capacity/10000
-            interestDecay = interests / 100
-            returnDelay = 3000 * (1 + Math.random()*2)
-            decayDelay = 4000 * (1 + Math.random()*4)
             initInternal();
         }
 
@@ -111,12 +87,6 @@ Image {
         function restartCountry() {
             debt = 149
             capacity = 5500 * (1+Math.random()/2);
-            newLoan = capacity * (5 + 8 * Math.random()) / 100
-            loanDecay = 100* newLoan / capacity / (Math.random()+1)
-            interests = 1+capacity/10000
-            interestDecay = interests / 100
-            returnDelay = 3000 * (1 + Math.random()*2)
-            decayDelay = 4000 * (1 + Math.random()*4)
             initInternal();
         }
 
@@ -134,12 +104,6 @@ Image {
         function restartCountry() {
             debt = 500
             capacity = 20000 * (1+Math.random()/2);
-            newLoan = capacity * (5 + 8 * Math.random()) / 100
-            loanDecay = 100* newLoan / capacity / (Math.random()+1)
-            interests = 1+capacity/10000
-            interestDecay = interests / 100
-            returnDelay = 3000 * (1 + Math.random()*2)
-            decayDelay = 4000 * (1 + Math.random()*4)
             initInternal();
         }
 
@@ -157,12 +121,6 @@ Image {
         function restartCountry() {
             debt = 100
             capacity = 30000 * (1+Math.random()/2);
-            newLoan = capacity * (5 + 8 * Math.random()) / 100
-            loanDecay = 100* newLoan / capacity / (Math.random()+1)
-            interests = 1+capacity/10000
-            interestDecay = interests / 100
-            returnDelay = 3000 * (1 + Math.random()*2)
-            decayDelay = 4000 * (1 + Math.random()*4)
             initInternal();
         }
 
@@ -180,12 +138,6 @@ Image {
         function restartCountry() {
             debt = 900
             capacity = 2000 * (1+Math.random()/2);
-            newLoan = capacity * (5 + 8 * Math.random()) / 100
-            loanDecay = 100* newLoan / capacity / (Math.random()+1)
-            interests = 1+capacity/10000
-            interestDecay = interests / 100
-            returnDelay = 3000 * (1 + Math.random()*2)
-            decayDelay = 4000 * (1 + Math.random()*4)
             initInternal();
         }
 
@@ -203,12 +155,6 @@ Image {
         function restartCountry() {
             debt = 300
             capacity = 3400 * (1+Math.random()/2);
-            newLoan = capacity * (5 + 8 * Math.random()) / 100
-            loanDecay = 100* newLoan / capacity / (Math.random()+1)
-            interests = 1+capacity/10000
-            interestDecay = interests / 100
-            returnDelay = 3000 * (1 + Math.random()*2)
-            decayDelay = 4000 * (1 + Math.random()*4)
             initInternal();
         }
 
@@ -226,12 +172,6 @@ Image {
         function restartCountry() {
             debt = 300
             capacity = 2800 * (1+Math.random()/2);
-            newLoan = capacity * (5 + 8 * Math.random()) / 100
-            loanDecay = 100* newLoan / capacity / (Math.random()+1)
-            interests = 1+capacity/10000
-            interestDecay = interests / 100
-            returnDelay = 3000 * (1 + Math.random()*2)
-            decayDelay = 4000 * (1 + Math.random()*4)
             initInternal();
         }
 
@@ -249,12 +189,6 @@ Image {
         function restartCountry() {
             debt = 100
             capacity = 2400 * (1+Math.random()/2);
-            newLoan = capacity * (5 + 8 * Math.random()) / 100
-            loanDecay = 100* newLoan / capacity / (Math.random()+1)
-            interests = 1+capacity/10000
-            interestDecay = interests / 100
-            returnDelay = 3000 * (1 + Math.random()*2)
-            decayDelay = 4000 * (1 + Math.random()*4)
             initInternal();
         }
 
@@ -272,12 +206,6 @@ Image {
         function restartCountry() {
             debt = 200
             capacity = 1000 * (1+Math.random()/2);
-            newLoan = capacity * (5 + 8 * Math.random()) / 100
-            loanDecay = 100* newLoan / capacity / (Math.random()+1)
-            interests = 1+capacity/10000
-            interestDecay = interests / 100
-            returnDelay = 3000 * (1 + Math.random()*2)
-            decayDelay = 4000 * (1 + Math.random()*4)
             initInternal();
         }
 
@@ -295,12 +223,6 @@ Image {
         function restartCountry() {
             debt = 200
             capacity = 10000 * (1+Math.random()/2);
-            newLoan = capacity * (5 + 8 * Math.random()) / 100
-            loanDecay = 100* newLoan / capacity / (Math.random()+1)
-            interests = 1+capacity/10000
-            interestDecay = interests / 100
-            returnDelay = 3000 * (1 + Math.random()*2)
-            decayDelay = 4000 * (1 + Math.random()*4)
             initInternal();
         }
 
@@ -318,12 +240,6 @@ Image {
         function restartCountry() {
             debt = 400
             capacity = 1500 * (1+Math.random()/2);
-            newLoan = capacity * (5 + 8 * Math.random()) / 100
-            loanDecay = 100* newLoan / capacity / (Math.random()+1)
-            interests = 1+capacity/10000
-            interestDecay = interests / 100
-            returnDelay = 3000 * (1 + Math.random()*2)
-            decayDelay = 4000 * (1 + Math.random()*4)
             initInternal();
         }
 
@@ -341,12 +257,6 @@ Image {
         function restartCountry() {
             debt = 400
             capacity = 2000 * (1+Math.random()/2);
-            newLoan = capacity * (5 + 8 * Math.random()) / 100
-            loanDecay = 100* newLoan / capacity / (Math.random()+1)
-            interests = 1+capacity/10000
-            interestDecay = interests / 100
-            returnDelay = 3000 * (1 + Math.random()*2)
-            decayDelay = 4000 * (1 + Math.random()*4)
             initInternal();
         }
 
@@ -364,12 +274,6 @@ Image {
         function restartCountry() {
             debt = 222
             capacity = 2000 * (1+Math.random()/2);
-            newLoan = capacity * (5 + 8 * Math.random()) / 100
-            loanDecay = 100* newLoan / capacity / (Math.random()+1)
-            interests = 1+capacity/10000
-            interestDecay = interests / 100
-            returnDelay = 3000 * (1 + Math.random()*2)
-            decayDelay = 4000 * (1 + Math.random()*4)
             initInternal();
         }
 
@@ -387,12 +291,6 @@ Image {
         function restartCountry() {
             debt = 900
             capacity = 8000 * (1+Math.random()/2);
-            newLoan = capacity * (5 + 8 * Math.random()) / 100
-            loanDecay = 100* newLoan / capacity / (Math.random()+1)
-            interests = 1+capacity/10000
-            interestDecay = interests / 100
-            returnDelay = 3000 * (1 + Math.random()*2)
-            decayDelay = 4000 * (1 + Math.random()*4)
             initInternal();
         }
 
@@ -414,12 +312,6 @@ Image {
         function restartCountry() {
             debt = 900
             capacity = 1800 * (1+Math.random()/2);
-            newLoan = capacity * (5 + 8 * Math.random()) / 100
-            loanDecay = 100* newLoan / capacity / (Math.random()+1)
-            interests = 1+capacity/10000
-            interestDecay = interests / 100
-            returnDelay = 3000 * (1 + Math.random()*2)
-            decayDelay = 4000 * (1 + Math.random()*4)
             initInternal();
         }
 
@@ -439,12 +331,6 @@ Image {
         function restartCountry() {
             debt = 900
             capacity = 2200 * (1+Math.random()/2);
-            newLoan = capacity * (5 + 8 * Math.random()) / 100
-            loanDecay = 100* newLoan / capacity / (Math.random()+1)
-            interests = 1+capacity/10000
-            interestDecay = interests / 100
-            returnDelay = 3000 * (1 + Math.random()*2)
-            decayDelay = 4000 * (1 + Math.random()*4)
             initInternal();
         }
 
@@ -464,12 +350,6 @@ Image {
         function restartCountry() {
             debt = 900
             capacity = 8000 * (1+Math.random()/2);
-            newLoan = capacity * (5 + 8 * Math.random()) / 100
-            loanDecay = 100* newLoan / capacity / (Math.random()+1)
-            interests = 1+capacity/10000
-            interestDecay = interests / 100
-            returnDelay = 3000 * (1 + Math.random()*2)
-            decayDelay = 4000 * (1 + Math.random()*4)
             initInternal();
         }
 
@@ -489,12 +369,6 @@ Image {
         function restartCountry() {
             debt = 900
             capacity = 18000 * (1+Math.random()/2);
-            newLoan = capacity * (5 + 8 * Math.random()) / 100
-            loanDecay = 100* newLoan / capacity / (Math.random()+1)
-            interests = 1+capacity/10000
-            interestDecay = interests / 100
-            returnDelay = 3000 * (1 + Math.random()*2)
-            decayDelay = 4000 * (1 + Math.random()*4)
             initInternal();
         }
 
@@ -514,12 +388,6 @@ Image {
         function restartCountry() {
             debt = 900
             capacity = 1900 * (1+Math.random()/2);
-            newLoan = capacity * (5 + 8 * Math.random()) / 100
-            loanDecay = 100* newLoan / capacity / (Math.random()+1)
-            interests = 1+capacity/10000
-            interestDecay = interests / 100
-            returnDelay = 3000 * (1 + Math.random()*2)
-            decayDelay = 4000 * (1 + Math.random()*4)
             initInternal();
         }
 
@@ -539,12 +407,6 @@ Image {
         function restartCountry() {
             debt = 900
             capacity = 1300 * (1+Math.random()/2);
-            newLoan = capacity * (5 + 8 * Math.random()) / 100
-            loanDecay = 100* newLoan / capacity / (Math.random()+1)
-            interests = 1+capacity/10000
-            interestDecay = interests / 100
-            returnDelay = 3000 * (1 + Math.random()*2)
-            decayDelay = 4000 * (1 + Math.random()*4)
             initInternal();
         }
 
@@ -564,12 +426,6 @@ Image {
         function restartCountry() {
             debt = 900
             capacity = 1500 * (1+Math.random()/2);
-            newLoan = capacity * (5 + 8 * Math.random()) / 100
-            loanDecay = 100* newLoan / capacity / (Math.random()+1)
-            interests = 1+capacity/10000
-            interestDecay = interests / 100
-            returnDelay = 3000 * (1 + Math.random()*2)
-            decayDelay = 4000 * (1 + Math.random()*4)
             initInternal();
         }
 
@@ -589,12 +445,6 @@ Image {
         function restartCountry() {
             debt = 900
             capacity = 3000 * (1+Math.random()/2);
-            newLoan = capacity * (5 + 8 * Math.random()) / 100
-            loanDecay = 100* newLoan / capacity / (Math.random()+1)
-            interests = 1+capacity/10000
-            interestDecay = interests / 100
-            returnDelay = 3000 * (1 + Math.random()*2)
-            decayDelay = 4000 * (1 + Math.random()*4)
             initInternal();
         }
 
@@ -614,12 +464,6 @@ Image {
         function restartCountry() {
             debt = 900
             capacity = 1000 * (1+Math.random()/2);
-            newLoan = capacity * (5 + 8 * Math.random()) / 100
-            loanDecay = 100* newLoan / capacity / (Math.random()+1)
-            interests = 1+capacity/10000
-            interestDecay = interests / 100
-            returnDelay = 3000 * (1 + Math.random()*2)
-            decayDelay = 4000 * (1 + Math.random()*4)
             initInternal();
         }
 
@@ -639,12 +483,6 @@ Image {
         function restartCountry() {
             debt = 900
             capacity = 28000 * (1+Math.random()/2);
-            newLoan = capacity * (5 + 8 * Math.random()) / 100
-            loanDecay = 100* newLoan / capacity / (Math.random()+1)
-            interests = 1+capacity/10000
-            interestDecay = interests / 100
-            returnDelay = 3000 * (1 + Math.random()*2)
-            decayDelay = 4000 * (1 + Math.random()*4)
             initInternal();
         }
 
