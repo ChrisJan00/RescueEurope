@@ -18,6 +18,7 @@ DialogBG {
     function closed() {
 //        beginningSound.stop();
         root.startTime = new Date().getTime();
+        root.beginGame();
     }
 
     MusicClip {

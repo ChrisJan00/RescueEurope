@@ -27,6 +27,7 @@ Item {
     }
 
     function show() {
+        root.finishGame();
         root.elapsedTime = new Date().getTime() - root.startTime;
         visible = true;
         endTheme.enqueue();

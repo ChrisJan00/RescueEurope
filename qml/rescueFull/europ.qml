@@ -8,6 +8,8 @@ Rectangle {
     height: 600
 
     signal restartAll
+    signal beginGame
+    signal finishGame
 
     property variant startTime;
     property variant elapsedTime;

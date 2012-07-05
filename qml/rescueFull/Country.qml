@@ -73,6 +73,8 @@ Image {
     Connections {
         target: root
         onRestartAll: restartCountry();
+        onBeginGame: decayTimer.restart();
+        onFinishGame: decayTimer.stop();
     }
 
     Timer {
@@ -224,7 +226,7 @@ Image {
 
     Timer {
         id: decayTimer
-        running: true
+        running: false
         repeat: true
         interval: decayDelay
         triggeredOnStart: true
@@ -258,14 +260,15 @@ Image {
 
     function generateCut()
     {
+        var exponent = 3;
         return {
             "currentCountry" : country,
             "returned" : toReturn,
-            "healthCuts" : Math.random() * health,
-            "eduCuts" : Math.random() * edu,
-            "scienceCuts" : Math.random() * science,
-            "unemplCuts" : Math.random() * unempl,
-            "pensionCuts" : Math.random() * pension
+            "healthCuts" : Math.pow(Math.random(),exponent) * health,
+            "eduCuts" : Math.pow(Math.random(),exponent) * edu,
+            "scienceCuts" : Math.pow(Math.random(),exponent) * science,
+            "unemplCuts" : Math.pow(Math.random(),exponent) * unempl,
+            "pensionCuts" : Math.pow(Math.random(),exponent) * pension
         }
     }
 
@@ -292,6 +295,13 @@ Image {
         science -= cuts.scienceCuts;
         unempl -= cuts.unemplCuts;
         pension -= cuts.pensionCuts;
+
+        // account for rounding errors
+        if (health < 0) health = 0;
+        if (edu < 0) edu = 0;
+        if (science < 0) science = 0;
+        if (unempl < 0) unempl = 0;
+        if (pension < 0) pension = 0;
 
     }
 
