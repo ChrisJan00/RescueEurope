@@ -71,13 +71,24 @@ DialogBG {
         Text {
             anchors.horizontalCenter: parent.horizontalCenter
             text: !currentCountry?"":("Groups: EU"+(currentCountry.isEuroZone?", Eurozone":""));
-            color: root.textColor
-        }
-        Text {
-            anchors.horizontalCenter: parent.horizontalCenter
-            text: !currentCountry?"":"National Debt: "+currentCountry.debt+"M €";
             height: 30
             color: root.textColor
+        }
+        Column {
+            anchors.horizontalCenter: parent.horizontalCenter
+            Text {
+                text: !currentCountry?"":"National Debt: "+currentCountry.debt+"M €";
+                color: root.textColor
+            }
+            Text {
+                text: !currentCountry?"":"Investment opportunity: "+currentCountry.newLoan+"M €";
+                color: root.textColor
+            }
+            Text {
+                text: !currentCountry?"":"Interest rate: "+((currentCountry.interests-1)*100).toFixed(2)+"%";
+                height: 30
+                color: root.textColor
+            }
         }
         Text {
             anchors.horizontalCenter: parent.horizontalCenter
@@ -184,7 +195,7 @@ DialogBG {
             z: 3
             opacity: 0
             color: root.textColor
-            //        style: Text.Outline
+            style: Text.Outline
             property int startY: fundsDisplay.height/2 - height/2;
             property color positiveColor: "green"
             property color negativeColor: "red"
@@ -195,11 +206,11 @@ DialogBG {
                     return;
 
                 if (amount > 0) {
-                    color = positiveColor;
+                    styleColor = positiveColor;
                     text = "+" + amount + " M €";
                     direction = 1;
                 } else {
-                    color = negativeColor;
+                    styleColor = negativeColor;
                     text = amount + " M €";
                     direction = -1;
                 }

@@ -106,7 +106,8 @@ Image {
         onEntered: {
             if (isPlayable)
                 country.state = "hovered"
-            root.currentCountry = country;
+            if (country.state != "disabled")
+                root.currentCountry = country;
             country.z = 1
         }
         onExited: {
