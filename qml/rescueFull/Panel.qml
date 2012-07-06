@@ -13,10 +13,11 @@ DialogBG {
     property variant totalCountries: 1
     property variant liveCountries: 1
     property variant eurozoneCountries: 1
+    property variant initialCountries: 1
 
-    onLiveCountriesChanged: if (liveCountries/totalCountries < 0.33)
+    onLiveCountriesChanged: if (liveCountries/initialCountries < 0.33)
                                 protaPicture.state = "superrich";
-                            else if (liveCountries/totalCountries < 0.66)
+                            else if (liveCountries/initialCountries < 0.66)
                                 protaPicture.state = "rich";
                             else
                                 protaPicture.state = "normal"
@@ -24,6 +25,7 @@ DialogBG {
     Connections {
         target: root
         onRestartAll: {
+            initialCountries = totalCountries;
             liveCountries = totalCountries;
             funds = 1000;
             fundsDisplay.oldFunds = funds;
@@ -32,7 +34,8 @@ DialogBG {
             startDialog.show();
         }
         onBeginGame: {
-            liveCountries = root.mode == "full" ? totalCountries : eurozoneCountries;
+            initialCountries = root.mode == "full" ? totalCountries : eurozoneCountries;
+            liveCountries = initialCountries;
         }
     }
 
