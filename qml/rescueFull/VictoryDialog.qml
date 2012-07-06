@@ -17,32 +17,6 @@ DialogBG {
 
     opacity: 0.7
 
-//    function started() {
-//        endTheme.play();
-//    }
-
-//    function closed() {
-//        endTheme.stop();
-//    }
-
-//    SoundClip {
-//        id: endTheme
-//        source: "snds/final_theme.ogg"
-//    }
-
-//    Text {
-//        id: floatingText
-//        font.pixelSize: 24
-//        parent: map
-//        z: 11
-//        x: victoryDialog.x + 10
-//        y: victoryDialog.y + 12
-//        color: textColor
-//        text: "YOU WIN! YOU RESCUED ALL EUROPE!"
-//        opacity: contents.opacity
-//        visible: victoryDialog.visible
-//    }
-
     Column {
         id: contents
         anchors.centerIn: parent

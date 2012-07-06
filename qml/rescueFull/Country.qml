@@ -33,6 +33,7 @@ Image {
     property int gain: Math.max(capacity + budget, capacity * 0.9)
     property int extraGain: 0
     property bool showGains: false
+    property bool isPlayable : !rescued && state != "disabled"
 
     source: sourceNormal
     states: [
@@ -53,6 +54,14 @@ Image {
         State {
             name: "depressed"
             when: rescued
+            PropertyChanges {
+                target: country
+                source: sourcePressed
+            }
+        },
+        State {
+            name: "disabled"
+            when: root.mode == "half" && !country.isEuroZone;
             PropertyChanges {
                 target: country
                 source: sourcePressed
@@ -94,18 +103,18 @@ Image {
         hoverEnabled: true
         enabled: !root.dialogOpen
         onEntered: {
-            if (!rescued)
+            if (isPlayable)
                 country.state = "hovered"
             root.currentCountry = country;
             country.z = 1
         }
         onExited: {
-            if (!rescued)
+            if (isPlayable)
                 country.state = ""
             country.z = 0
         }
         onPressed: {
-            if (!rescued) {
+            if (isPlayable) {
                 country.state = "pressed";
                 if (budget > 0 && toReturn > 0) {
                     owingDialog.activate(country);
@@ -123,7 +132,7 @@ Image {
             }
         }
         onReleased:
-            if (!rescued) {
+            if (isPlayable) {
                 if (containsMouse)
                     country.state = "hovered";
                 else
@@ -135,7 +144,7 @@ Image {
     Image {
         source: sourceHighlight
         opacity: Math.max(0, Math.min(1, 1-budget/capacity))*0.7;
-        visible: !rescued
+        visible: isPlayable
         z: 2
     }
 
@@ -217,7 +226,7 @@ Image {
         repeat: false
         interval: returnDelay
         onTriggered: {
-            if (rescued)
+            if (!isPlayable)
                 return;
             returnDialog.returnList.append(generateCut())
             returnDialog.activate();
@@ -319,7 +328,7 @@ Image {
 
     function decay()
     {
-        if (rescued)
+        if (!isPlayable)
             return;
         interests += interestDecay * (Math.random() - 0.5) * 2;
         newLoan += loanDecay * Math.random();

@@ -20,7 +20,9 @@ Rectangle {
     property alias funds : panel.funds
     property alias currentCountry: panel.currentCountry
     property alias totalCountries: panel.totalCountries
+    property alias eurozoneCountries: panel.eurozoneCountries
     property alias liveCountries: panel.liveCountries
+    property string mode: "full"
 
     property bool dialogOpen: loanDialog.isOpen ||
                               rescueDialog.isOpen ||
@@ -30,6 +32,7 @@ Rectangle {
 
     Component.onCompleted: {
         totalCountries = 27;
+        eurozoneCountries = 17;
         restartAll();
     }
     ////////////////////

@@ -12,6 +12,7 @@ DialogBG {
     property variant currentCountry: null
     property variant totalCountries: 1
     property variant liveCountries: 1
+    property variant eurozoneCountries: 1
 
     onLiveCountriesChanged: if (liveCountries/totalCountries < 0.33)
                                 protaPicture.state = "superrich";
@@ -29,6 +30,9 @@ DialogBG {
             fundsDisplay.displayFunds = funds;
             currentCountry = null;
             startDialog.show();
+        }
+        onBeginGame: {
+            liveCountries = root.mode == "full" ? totalCountries : eurozoneCountries;
         }
     }
 

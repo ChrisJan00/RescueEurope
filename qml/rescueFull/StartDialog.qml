@@ -49,10 +49,17 @@ DialogBG {
             text: "a parody game by Christiaan Janssen"
             x: 160
         }
-        Button {
-            label: "Start"
+        Row {
             anchors.horizontalCenter: parent.horizontalCenter
-            onClicked: hide();
+            spacing: 40
+            Button {
+                label: "Normal (Eurozone)"
+                onClicked: { root.mode = "half"; hide(); }
+            }
+            Button {
+                label: "Hard (European Union)"
+                onClicked: { root.mode = "full"; hide(); }
+            }
         }
     }
 }

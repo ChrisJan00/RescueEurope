@@ -15,13 +15,7 @@ DialogBG {
     property int amount
 
     function started() {
-//        cashSound.play();
     }
-
-//    SoundClip {
-//        id: cashSound
-//        source:"snds/cashregister.ogg"
-//    }
 
     Column {
         id: contents
@@ -48,15 +42,6 @@ DialogBG {
         if (dialogOpen)
             return;
         currentCountry = country;
-        // If the country is bankrupt, ignore and go to next
-//        if (currentCountry.budget <= 0) {
-//            if (!currentCountry.rescued) {
-//                rescueDialog.currentCountry = currentCountry;
-//                rescueDialog.show();
-//                return;
-//            }
-//            return;
-//        }
         amount = currentCountry.toReturn;
         if (amount <= 0)
             return;

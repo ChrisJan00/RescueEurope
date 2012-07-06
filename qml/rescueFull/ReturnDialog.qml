@@ -103,7 +103,7 @@ DialogBG {
         // If the country is bankrupt, ignore and go to next
         if (currentCountry.budget <= 0) {
             returnList.remove(0);
-            if (!currentCountry.rescued) {
+            if (currentCountry.isPlayable) {
                 rescueDialog.currentCountry = currentCountry;
                 rescueDialog.show();
                 return;
