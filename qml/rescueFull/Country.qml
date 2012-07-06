@@ -13,6 +13,7 @@ Image {
     property bool isEuroZone: true
     property int debt: 100
     property int capacity: 1000
+    property int stability: 100
     property int newLoan: 100
     property real loanDecay: 10
     property real interests: 1.1
@@ -267,9 +268,9 @@ Image {
         showGains = false;
     }
 
-    function generateCut()
+    function generateCut(exp)
     {
-        var exponent = 3;
+        var exponent = exp? exp : 3;
         return {
             "currentCountry" : country,
             "returned" : toReturn,
@@ -335,7 +336,7 @@ Image {
 
         debt += newLoan * Math.random();
 
-        acceptCut(generateCut());
+        acceptCut(generateCut(6));
 
         var debtCut = Math.min(budget/2, debt/2)
         if (Math.floor(debtCut) > 1) {
