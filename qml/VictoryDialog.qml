@@ -4,7 +4,7 @@ import SDLMixerWrapper 1.0
 DialogBG {
     id: victoryDialog
 
-    originalWidth: 440
+    originalWidth: victoryText.width + 24
     originalHeight: 100
     anchors.centerIn: parent
     z: 10
@@ -19,14 +19,18 @@ DialogBG {
 
     Column {
         id: contents
-        anchors.centerIn: parent
+        //anchors.centerIn: parent
         width: parent.width
+        y: 6
         spacing: 8
         Text {
+            id: victoryText
             font.pixelSize: 24
-            anchors.horizontalCenter: parent.horizontalCenter
+            x: 12
             color: textColor
             text: "YOU WIN! YOU RESCUED ALL EUROPE!"
+//            style: Text.Outline
+//            styleColor: "blue"
         }
         Text {
             anchors.horizontalCenter: parent.horizontalCenter

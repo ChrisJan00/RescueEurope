@@ -41,23 +41,23 @@ DialogBG {
             font.pixelSize: 42
             color: textColor
             text: "until the end"
-            x: 140
+            x: startDialog.width - 10 - width
         }
         Text {
             color: textColor
             font.pixelSize: 14
             text: "a parody game by Christiaan Janssen"
-            x: 160
+            x: startDialog.width - 10 - width
         }
         Row {
             anchors.horizontalCenter: parent.horizontalCenter
             spacing: 40
             Button {
-                label: "Normal (Eurozone)"
+                label: "Small (Eurozone)"
                 onClicked: { root.mode = "half"; hide(); }
             }
             Button {
-                label: "Hard (European Union)"
+                label: "Big (European Union)"
                 onClicked: { root.mode = "full"; hide(); }
             }
         }

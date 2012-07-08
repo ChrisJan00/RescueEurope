@@ -101,7 +101,7 @@ Item {
         font.pixelSize: 24
 //        parent: map
         z: 11
-        x: victoryDialog.x + 11
+        x: victoryDialog.x + 13
         y: victoryDialog.y + 12
         color: textColor
         text: "YOU WIN! YOU RESCUED ALL EUROPE!"

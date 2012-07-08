@@ -192,8 +192,10 @@ MusicClip::~MusicClip()
     stop();
     if (d->music) {
         Mix_FreeMusic(d->music);
+        d->music = 0;
     }
     musicControl.allMusicInstances.removeOne(this);
+    musicControl.musicQueue.removeOne(this);
     delete d;
 }
 
@@ -265,6 +267,8 @@ bool MusicClip::playing() const
 
 void MusicClip::play()
 {
+    if (!d->music)
+        return;
     if (Mix_FadeInMusic(d->music, d->loops, d->fadeInTime) == -1) {
         qDebug() << "Unable to play Music file:" << Mix_GetError();
         return;
