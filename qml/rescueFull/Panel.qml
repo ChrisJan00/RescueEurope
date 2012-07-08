@@ -1,4 +1,5 @@
 import QtQuick 1.1
+import SDLMixerWrapper 1.0
 
 DialogBG {
     id: panel
@@ -36,7 +37,18 @@ DialogBG {
         onBeginGame: {
             initialCountries = root.mode == "full" ? totalCountries : eurozoneCountries;
             liveCountries = initialCountries;
+            mainTheme.enqueue();
         }
+        onFinishGame: {
+            mainTheme.fadeOut(1000);
+        }
+    }
+
+    MusicClip {
+        id: mainTheme
+        source: "snds/main_theme.ogg"
+        fadeInTime: 200
+        loops: -1
     }
 
     Image {

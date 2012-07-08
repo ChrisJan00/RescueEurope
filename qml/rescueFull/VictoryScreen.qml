@@ -60,7 +60,7 @@ Item {
             value: true
         }
 
-        PauseAnimation { duration: 3000 }
+        PauseAnimation { duration: 4000 }
 
         ScriptAction {
             script: fireworks.activate();

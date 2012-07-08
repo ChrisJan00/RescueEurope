@@ -130,6 +130,8 @@ public:
     QString fileName;
     Mix_Music *music;
     bool isPlaying;
+    int loops;
+    int fadeInTime;
 };
 
 struct MusicControl {
@@ -155,6 +157,8 @@ MusicClip::MusicClip(QObject *parent) : QObject(parent)
     d = new MusicClipPrivate;
     d->music = 0;
     d->isPlaying = false;
+    d->loops = 0;
+    d->fadeInTime = 0;
     musicControl.allMusicInstances.append(this);
 }
 
@@ -192,6 +196,32 @@ void MusicClip::setSource(const QString &newSource)
     }
 }
 
+int MusicClip::loops() const
+{
+    return d->loops;
+}
+
+void MusicClip::setLoops(int loops)
+{
+    if (d->loops != loops) {
+        d->loops = loops;
+        emit loopsChanged();
+    }
+}
+
+int MusicClip::fadeInTime() const
+{
+    return d->fadeInTime;
+}
+
+void MusicClip::setFadeInTime(int ms)
+{
+    if (d->fadeInTime != ms) {
+        d->fadeInTime = ms;
+        emit fadeInTimeChanged();
+    }
+}
+
 void MusicClip::notifyFinish()
 {
     if (d->isPlaying) {
@@ -207,7 +237,12 @@ bool MusicClip::playing() const
 
 void MusicClip::play()
 {
-    loop(0);
+    if (Mix_FadeInMusic(d->music, d->loops, d->fadeInTime) == -1) {
+        qDebug() << "Unable to play Music file:" << Mix_GetError();
+        return;
+    }
+    d->isPlaying = true;
+    musicControl.musicCount++;
 }
 
 void MusicClip::stop()
@@ -224,16 +259,6 @@ void MusicClip::enqueue()
         play();
     else
         musicControl.musicQueue.append(this);
-}
-
-void MusicClip::loop(int n)
-{
-    if(Mix_PlayMusic(d->music, n) == -1) {
-        qDebug() << "Unable to play Music file:" << Mix_GetError();
-        return;
-    }
-    d->isPlaying = true;
-    musicControl.musicCount++;
 }
 
 void MusicClip::fadeOut(int ms)

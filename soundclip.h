@@ -47,6 +47,8 @@ class MusicClip : public QObject
 
     Q_PROPERTY(QString source READ source WRITE setSource NOTIFY sourceChanged)
     Q_PROPERTY(bool playing READ playing NOTIFY playingChanged)
+    Q_PROPERTY(int loops READ loops WRITE setLoops NOTIFY loopsChanged)
+    Q_PROPERTY(int fadeInTime READ fadeInTime WRITE setFadeInTime NOTIFY fadeInTimeChanged)
 public:
     explicit MusicClip(QObject *parent = 0);
     ~MusicClip();
@@ -54,6 +56,10 @@ public:
     QString source() const;
     void setSource(const QString &newSource);
     bool playing() const;
+    int loops() const;
+    void setLoops(int loops);
+    int fadeInTime() const;
+    void setFadeInTime(int ms);
 
     // used internally
     void notifyFinish();
@@ -61,12 +67,13 @@ public:
     Q_INVOKABLE void play();
     Q_INVOKABLE void stop();
     Q_INVOKABLE void enqueue();
-    Q_INVOKABLE void loop(int n);
     Q_INVOKABLE void fadeOut(int ms);
 
 signals:
     void sourceChanged();
     void playingChanged();
+    void loopsChanged();
+    void fadeInTimeChanged();
 
 private:
     MusicClipPrivate *d;
