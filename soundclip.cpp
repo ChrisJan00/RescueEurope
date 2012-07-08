@@ -1,6 +1,8 @@
 #include "soundclip.h"
 #include <QDebug>
 
+#include <QDir>
+
 // Using SDL because I've got weird problems with QtMultimedia
 #include <SDL/SDL.h>
 #ifdef __APPLE__
@@ -10,6 +12,22 @@
 #endif
 
 void musicFinished();
+
+QString unpacked(QString filename)
+{
+    QString to = QDir::tempPath() + filename.mid(filename.lastIndexOf('/'));
+    // already there?
+    if (QFile(to).exists())
+        return to;
+
+    // copy to tmp folder
+    QString from = QString(":/") + filename;
+    if (QFile(from).exists()) {
+        QFile::copy(from, to);
+        return to;
+    }
+    return QString();
+}
 
 // Mixer Instance
 bool StartMixer() {
@@ -93,8 +111,11 @@ void SoundClip::setSource(const QString &newSource)
             Mix_FreeChunk(d->sound);
         }
         d->sound = Mix_LoadWAV(newSource.toLocal8Bit().data());
-        if(!d->sound) {
-            qDebug() << "Unable to load WAV file" << newSource << ":" << Mix_GetError();
+        if (!d->sound) {
+            d->sound = Mix_LoadWAV(unpacked(newSource).toLocal8Bit().data());
+            if(!d->sound) {
+                qDebug() << "Unable to load WAV file" << newSource << ":" << Mix_GetError();
+            }
         } else {
             d->fileName = newSource;
             emit sourceChanged();
@@ -191,8 +212,11 @@ void MusicClip::setSource(const QString &newSource)
             Mix_FreeMusic(d->music);
         }
         d->music = Mix_LoadMUS(newSource.toLocal8Bit().data());
-        if(!d->music) {
-            qDebug() << "Unable to load Music file:" << Mix_GetError();
+        if (!d->music) {
+            d->music = Mix_LoadMUS(unpacked(newSource).toLocal8Bit().data());
+            if(!d->music) {
+                qDebug() << "Unable to load Music file:" << Mix_GetError();
+            }
         } else {
             d->fileName = newSource;
             emit sourceChanged();
