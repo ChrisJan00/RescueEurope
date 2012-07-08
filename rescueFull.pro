@@ -4,7 +4,14 @@
 #DEPLOYMENTFOLDERS = folder_01
 QT += declarative
 
-LIBS += -lSDL -lSDL_mixer
+macx {
+  LIBS += -framework SDL
+  LIBS += -framework SDL_mixer
+} else {
+  LIBS += -lSDL -lSDL_mixer
+}
+
+#INCLUDEPATH += /Library/Frameworks/SDL_mixer.Framework/Headers
 
 # Additional import path used to resolve QML modules in Creator's code model
 QML_IMPORT_PATH =

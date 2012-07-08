@@ -3,7 +3,11 @@
 
 // Using SDL because I've got weird problems with QtMultimedia
 #include <SDL/SDL.h>
-#include <SDL/SDL_mixer.h>
+#ifdef __APPLE__
+    #include <SDL_mixer/SDL_mixer.h>
+#else
+    #include <SDL/SDL_mixer.h>
+#endif
 
 void musicFinished();
 
