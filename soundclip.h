@@ -2,6 +2,7 @@
 #define SOUNDCLIP_H
 
 #include <QString>
+#include <QUrl>
 #include <QObject>
 
 class SoundClipPrivate;

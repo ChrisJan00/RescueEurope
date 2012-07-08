@@ -62,7 +62,7 @@ Item {
         x: 150
         width: 1
         height: 1
-        source: "pics/fw_dot.png"
+        source: ":/pics/fw_dot.png"
         lifeSpan: 2500
         count: 50
         emissionRate: 0

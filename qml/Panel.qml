@@ -54,7 +54,7 @@ DialogBG {
     Image {
         id: protaPicture
         anchors.horizontalCenter: parent.horizontalCenter
-        source: "pics/rich_guy1.png"
+        source: ":/pics/rich_guy1.png"
         y: 30
         states: [
             State { name: "normal" },
@@ -62,14 +62,14 @@ DialogBG {
                 name: "rich"
                 PropertyChanges {
                     target: protaPicture
-                    source: "pics/rich_guy2.png"
+                    source: ":/pics/rich_guy2.png"
                 }
             },
             State {
                 name: "superrich"
                 PropertyChanges {
                     target: protaPicture
-                    source: "pics/rich_guy3.png"
+                    source: ":/pics/rich_guy3.png"
                 }
             }
         ]

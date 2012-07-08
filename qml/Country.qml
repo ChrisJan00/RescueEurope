@@ -73,7 +73,7 @@ Image {
     AnimatedImage {
         parent: map
         id: burnImage
-        source: "pics/fireLoop.gif"
+        source: ":/pics/fireLoop.gif"
         x: country.x + country.width/2 - width/2
         y: country.y + country.height/2 - height/2 - 30
         z: 3+y/600

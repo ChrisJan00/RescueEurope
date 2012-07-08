@@ -34,7 +34,7 @@ DialogBG {
         Text {
             font.pixelSize: 42
             color: textColor
-            text: "T<img src='pics/euroflag.png'/>gether"
+            text: "T<img src=':/pics/euroflag.png'/>gether"
             x: 25
         }
         Text {

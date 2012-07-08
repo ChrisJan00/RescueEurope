@@ -1,7 +1,7 @@
 # Add more folders to ship with the application, here
-folder_01.source = qml/rescueFull
-folder_01.target = qml
-DEPLOYMENTFOLDERS = folder_01
+#folder_01.source = qml
+#folder_01.target = qml
+#DEPLOYMENTFOLDERS = folder_01
 QT += declarative
 
 LIBS += -lSDL -lSDL_mixer
@@ -42,3 +42,22 @@ qtcAddDeployment()
 
 HEADERS += \
     soundclip.h
+
+RESOURCES += \
+    RescueEurope.qrc
+
+OTHER_FILES += \
+    qml/Button.qml \
+    qml/Fireworks.qml \
+    qml/Panel.qml \
+    qml/Country.qml \
+    qml/LoanDialog.qml \
+    qml/RescueDialog.qml \
+    qml/StartDialog.qml \
+    qml/DialogBG.qml \
+    qml/Map.qml \
+    qml/VictoryDialog.qml \
+    qml/europ.qml \
+    qml/OwingDialog.qml \
+    qml/ReturnDialog.qml \
+    qml/VictoryScreen.qml
