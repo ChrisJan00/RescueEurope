@@ -14,12 +14,15 @@ Image {
     property int debt: 100
     property int capacity: 1000
     property int stability: 100
+    property int vulnerability: 100
     property int newLoan: 100
     property real loanDecay: 10
+    property real debtDecay: 1
     property real interests: 1.1
     property real interestDecay: 0.1
     property int returnDelay: 4000
     property int decayDelay : 3000
+    property real cutExp: 1
 
     // internal
     property int budget: capacity
@@ -35,6 +38,7 @@ Image {
     property int extraGain: 0
     property bool showGains: false
     property bool isPlayable : !rescued && state != "disabled"
+
 
     source: sourceNormal
     states: [
@@ -120,6 +124,9 @@ Image {
                 country.state = "pressed";
                 if (budget > 0 && toReturn > 0) {
                     owingDialog.activate(country);
+                    if (!returnTimer.running) returnTimer.start();
+                    if (!returnToNormalTimer.running)
+                        returnToNormalTimer.start()
                 } else if (budget > 0 && loanDialog.state=="hidden") {
                     loanDialog.currentCountry = country;
                     loanDialog.show();
@@ -249,12 +256,35 @@ Image {
 
     function initInternal()
     {
-        newLoan = capacity * (5 + 8 * Math.random()) / 100
-        loanDecay = 100* newLoan / capacity / (Math.random()+1)
-        interests = 1+capacity/10000
-        interestDecay = interests / 100
-        returnDelay = 3000 * (1 + Math.random()*2)
-        decayDelay = 4000 * (1 + Math.random()*4)
+        newLoan = capacity * (2 + 2 * Math.random()) * (1/(vulnerability+1))
+//        newLoan = capacity * (5 + 8 * Math.random()) / 100
+//        loanDecay = 100* newLoan / capacity / (Math.random()+1)
+        loanDecay = (vulnerability + 100) / (stability + 1) * (10 + Math.random() * 3);
+//        interests = 1+capacity/10000
+        interests = 1 + vulnerability / 100 * Math.random();
+//        interestDecay = interests / 100
+        interestDecay = (1+capacity/10000)/100 * (0.5 + Math.random()/4);
+//        returnDelay = 3000 * (1 + Math.random()*2)
+        returnDelay = 3000 * (interestDecay*100 + vulnerability / 50 + Math.random()*2);
+//        decayDelay = 4000 * (1 + Math.random()*4)
+        decayDelay = 3000 * (1 + stability/100 + Math.random());
+//        debt = 300
+        debt = capacity / (stability + 1) * (1 + Math.random() * 3);
+        debtDecay = 1000 / (stability+1)
+//        cutExp = 1
+        cutExp = 100/(stability+1);
+
+//        console.log(name);
+//        console.log("newLoan "+ newLoan);
+//        console.log("loanDecay "+ loanDecay + " vul " + vulnerability + " sta " + stability + " v/s " + (vulnerability / (stability + 1)));
+////        console.log("interests "+ interests);
+////        console.log("interestDecay "+ interestDecay);
+////        console.log("returnDelay "+ returnDelay);
+////        console.log("decayDelay "+ (decayDelay/1000) + " " + stability + " " + (1 + stability/100));
+//        console.log("debt "+ debt + " cap " + capacity + " sta " + stability);
+//        console.log("debtDecay "+ debtDecay);
+////        console.log("cutExp "+ cutExp);
+//        console.log("  ");
 
         budget = capacity
         rescued = false
@@ -271,7 +301,7 @@ Image {
 
     function generateCut(exp)
     {
-        var exponent = exp? exp : 3;
+        var exponent = cutExp * (exp? exp : 3);
         return {
             "currentCountry" : country,
             "returned" : toReturn,
@@ -332,10 +362,11 @@ Image {
     {
         if (!isPlayable)
             return;
-        interests += interestDecay * (Math.random() - 0.5) * 2;
+
+        interests += interestDecay * (Math.random() - 0.25) * 2;
         newLoan += loanDecay * Math.random();
 
-        debt += newLoan * Math.random();
+        debt += debtDecay * Math.random();
 
         acceptCut(generateCut(6));
 

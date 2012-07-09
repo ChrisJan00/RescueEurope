@@ -16,9 +16,9 @@ Image {
         sourceHighlight: ":/pics/eurozone/austria_red.png"
 
         function restartCountry() {
-            debt = 100;
             capacity = 10000 * (1+Math.random()/2);
-            stability = 100;
+            stability = 180;
+            vulnerability = 100;
             initInternal();
         }
 
@@ -35,9 +35,9 @@ Image {
         sourceHighlight: ":/pics/eurozone/belgium_red.png"
 
         function restartCountry() {
-            debt = 100;
             capacity = 7000 * (1+Math.random()/2);
-            stability = 100;
+            stability = 150;
+            vulnerability = 110;
             initInternal();
         }
 
@@ -53,9 +53,9 @@ Image {
         sourceHighlight: ":/pics/eurozone/cyprus_red.png"
 
         function restartCountry() {
-            debt = 300
             capacity = 1000 * (1+Math.random()/2);
-            stability = 100;
+            stability = 80;
+            vulnerability = 170;
             initInternal();
         }
 
@@ -71,9 +71,9 @@ Image {
         sourceHighlight: ":/pics/eurozone/estonia_red.png"
 
         function restartCountry() {
-            debt = 130
             capacity = 3500 * (1+Math.random()/2);
-            stability = 100;
+            stability = 150;
+            vulnerability = 150;
             initInternal();
         }
 
@@ -89,9 +89,9 @@ Image {
         sourceHighlight: ":/pics/eurozone/finland_red.png"
 
         function restartCountry() {
-            debt = 149
             capacity = 5500 * (1+Math.random()/2);
-            stability = 100;
+            stability = 120;
+            vulnerability = 40;
             initInternal();
         }
 
@@ -107,9 +107,9 @@ Image {
         sourceHighlight: ":/pics/eurozone/france_red.png"
 
         function restartCountry() {
-            debt = 500
             capacity = 20000 * (1+Math.random()/2);
-            stability = 100;
+            stability = 160;
+            vulnerability = 80;
             initInternal();
         }
 
@@ -125,9 +125,9 @@ Image {
         sourceHighlight: ":/pics/eurozone/germany_red.png"
 
         function restartCountry() {
-            debt = 100
             capacity = 30000 * (1+Math.random()/2);
-            stability = 100;
+            stability = 210;
+            vulnerability = 20;
             initInternal();
         }
 
@@ -143,9 +143,9 @@ Image {
         sourceHighlight: ":/pics/eurozone/greece_red.png"
 
         function restartCountry() {
-            debt = 900
             capacity = 2000 * (1+Math.random()/2);
-            stability = 100;
+            stability = 30;
+            vulnerability = 190;
             initInternal();
         }
 
@@ -161,9 +161,9 @@ Image {
         sourceHighlight: ":/pics/eurozone/ireland_red.png"
 
         function restartCountry() {
-            debt = 300
             capacity = 3400 * (1+Math.random()/2);
-            stability = 100;
+            stability = 70;
+            vulnerability = 120;
             initInternal();
         }
 
@@ -179,9 +179,9 @@ Image {
         sourceHighlight: ":/pics/eurozone/italy_red.png"
 
         function restartCountry() {
-            debt = 300
             capacity = 2800 * (1+Math.random()/2);
-            stability = 100;
+            stability = 90;
+            vulnerability = 170;
             initInternal();
         }
 
@@ -197,9 +197,9 @@ Image {
         sourceHighlight: ":/pics/eurozone/luxembourg_red.png"
 
         function restartCountry() {
-            debt = 100
             capacity = 2400 * (1+Math.random()/2);
-            stability = 100;
+            stability = 190;
+            vulnerability = 70;
             initInternal();
         }
 
@@ -215,9 +215,9 @@ Image {
         sourceHighlight: ":/pics/eurozone/malta_red.png"
 
         function restartCountry() {
-            debt = 200
             capacity = 1000 * (1+Math.random()/2);
-            stability = 100;
+            stability = 170;
+            vulnerability = 170;
             initInternal();
         }
 
@@ -233,9 +233,9 @@ Image {
         sourceHighlight: ":/pics/eurozone/netherlands_red.png"
 
         function restartCountry() {
-            debt = 200
             capacity = 10000 * (1+Math.random()/2);
-            stability = 100;
+            stability = 120;
+            vulnerability = 60;
             initInternal();
         }
 
@@ -251,9 +251,9 @@ Image {
         sourceHighlight: ":/pics/eurozone/portugal_red.png"
 
         function restartCountry() {
-            debt = 400
             capacity = 1500 * (1+Math.random()/2);
-            stability = 100;
+            stability = 75;
+            vulnerability = 180;
             initInternal();
         }
 
@@ -269,9 +269,9 @@ Image {
         sourceHighlight: ":/pics/eurozone/slovenia_red.png"
 
         function restartCountry() {
-            debt = 400
             capacity = 2000 * (1+Math.random()/2);
-            stability = 100;
+            stability = 80;
+            vulnerability = 90;
             initInternal();
         }
 
@@ -287,9 +287,9 @@ Image {
         sourceHighlight: ":/pics/eurozone/slowakia_red.png"
 
         function restartCountry() {
-            debt = 222
             capacity = 2000 * (1+Math.random()/2);
-            stability = 100;
+            stability = 75;
+            vulnerability = 95;
             initInternal();
         }
 
@@ -305,9 +305,9 @@ Image {
         sourceHighlight: ":/pics/eurozone/spain_red.png"
 
         function restartCountry() {
-            debt = 900
             capacity = 8000 * (1+Math.random()/2);
-            stability = 100;
+            stability = 40;
+            vulnerability = 200;
             initInternal();
         }
 
@@ -327,9 +327,9 @@ Image {
         sourceHighlight: ":/pics/EU/bulgaria_red.png"
 
         function restartCountry() {
-            debt = 900
             capacity = 1800 * (1+Math.random()/2);
             stability = 100;
+            vulnerability = 100;
             initInternal();
         }
 
@@ -347,9 +347,9 @@ Image {
         sourceHighlight: ":/pics/EU/czech_red.png"
 
         function restartCountry() {
-            debt = 900
             capacity = 2200 * (1+Math.random()/2);
-            stability = 100;
+            stability = 150;
+            vulnerability = 150;
             initInternal();
         }
 
@@ -367,9 +367,9 @@ Image {
         sourceHighlight: ":/pics/EU/denmark_red.png"
 
         function restartCountry() {
-            debt = 900
             capacity = 8000 * (1+Math.random()/2);
-            stability = 100;
+            stability = 200;
+            vulnerability = 30;
             initInternal();
         }
 
@@ -387,9 +387,9 @@ Image {
         sourceHighlight: ":/pics/EU/great_britain_red.png"
 
         function restartCountry() {
-            debt = 900
             capacity = 18000 * (1+Math.random()/2);
-            stability = 100;
+            stability = 80;
+            vulnerability = 50;
             initInternal();
         }
 
@@ -407,9 +407,9 @@ Image {
         sourceHighlight: ":/pics/EU/hungary_red.png"
 
         function restartCountry() {
-            debt = 900
             capacity = 1900 * (1+Math.random()/2);
-            stability = 100;
+            stability = 90;
+            vulnerability = 130;
             initInternal();
         }
 
@@ -427,9 +427,9 @@ Image {
         sourceHighlight: ":/pics/EU/latvia_red.png"
 
         function restartCountry() {
-            debt = 900
             capacity = 1300 * (1+Math.random()/2);
             stability = 100;
+            vulnerability = 160;
             initInternal();
         }
 
@@ -447,9 +447,9 @@ Image {
         sourceHighlight: ":/pics/EU/lithuania_red.png"
 
         function restartCountry() {
-            debt = 900
             capacity = 1500 * (1+Math.random()/2);
             stability = 100;
+            vulnerability = 160;
             initInternal();
         }
 
@@ -467,9 +467,9 @@ Image {
         sourceHighlight: ":/pics/EU/poland_red.png"
 
         function restartCountry() {
-            debt = 900
             capacity = 3000 * (1+Math.random()/2);
-            stability = 100;
+            stability = 60;
+            vulnerability = 60;
             initInternal();
         }
 
@@ -487,9 +487,9 @@ Image {
         sourceHighlight: ":/pics/EU/romania_red.png"
 
         function restartCountry() {
-            debt = 900
-            capacity = 1000 * (1+Math.random()/2);
-            stability = 100;
+            capacity = 2000 * (1+Math.random()/2);
+            stability = 80;
+            vulnerability = 150;
             initInternal();
         }
 
@@ -507,9 +507,9 @@ Image {
         sourceHighlight: ":/pics/EU/sweden_red.png"
 
         function restartCountry() {
-            debt = 900
             capacity = 28000 * (1+Math.random()/2);
-            stability = 100;
+            stability = 200;
+            vulnerability = 30;
             initInternal();
         }
 
