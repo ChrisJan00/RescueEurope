@@ -58,7 +58,7 @@ Rectangle {
         minLoan = funds + 1;
         computeMinLoan();
         if (minLoan > funds)
-            looseScreen.activate();
+            loseScreen.activate();
     }
 
 
@@ -86,8 +86,8 @@ Rectangle {
         id: returnDialog
     }
 
-    LooseScreen {
-        id: looseScreen
+    LoseScreen {
+        id: loseScreen
     }
 
     VictoryScreen {

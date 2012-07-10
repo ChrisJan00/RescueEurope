@@ -6,7 +6,7 @@
         <file>qml/europ.qml</file>
         <file>qml/Fireworks.qml</file>
         <file>qml/LoanDialog.qml</file>
-        <file>qml/LooseScreen.qml</file>
+        <file>qml/LoseScreen.qml</file>
         <file>qml/Map.qml</file>
         <file>qml/OwingDialog.qml</file>
         <file>qml/Panel.qml</file>

@@ -59,7 +59,7 @@ OTHER_FILES += \
     qml/Panel.qml \
     qml/Country.qml \
     qml/LoanDialog.qml \
-    qml/LooseScreen.qml \
+    qml/LoseScreen.qml \
     qml/RescueDialog.qml \
     qml/StartDialog.qml \
     qml/DialogBG.qml \

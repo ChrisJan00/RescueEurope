@@ -2,9 +2,9 @@ import QtQuick 1.1
 import SDLMixerWrapper 1.0
 
 DialogBG {
-    id: looseScreen
+    id: loseScreen
 
-    originalWidth: looseText.width + 24
+    originalWidth: loseText.width + 24
     originalHeight: 100
     anchors.centerIn: parent
     z: 10
@@ -23,11 +23,11 @@ DialogBG {
         y: 6
         spacing: 8
         Text {
-            id: looseText
+            id: loseText
             font.pixelSize: 24
             x: 12
             color: textColor
-            text: "Not enough cash to invest.  You loose."
+            text: "Not enough cash to invest.  You lose."
         }
         Text {
             anchors.horizontalCenter: parent.horizontalCenter
