@@ -37,7 +37,7 @@ Image {
     property int gain: Math.max(capacity + budget, capacity * 0.9)
     property int extraGain: 0
     property bool showGains: false
-    property bool isPlayable : !rescued && state != "disabled"
+    property bool isPlayable : !root.stopped && !rescued && state != "disabled"
 
 
     source: sourceNormal
@@ -89,6 +89,8 @@ Image {
         onRestartAll: restartCountry();
         onBeginGame: decayTimer.restart();
         onFinishGame: decayTimer.stop();
+        onComputeMinLoan: if (isPlayable && root.minLoan > newLoan)
+                              root.minLoan = newLoan;
     }
 
     Timer {
@@ -222,7 +224,9 @@ Image {
             debt += newLoan * interests;
             toReturn += newLoan * interests;
             funds -= newLoan;
+            decayFromLoan();
             decay();
+            root.addLoanCount();
             if (!returnTimer.running)
                 returnTimer.restart();
         }
@@ -250,6 +254,8 @@ Image {
         triggeredOnStart: true
         onTriggered: {
             decay();
+            if (root.loanCount == 0)
+                root.checkLoans();
             showGains = true;
         }
     }
@@ -257,34 +263,15 @@ Image {
     function initInternal()
     {
         newLoan = capacity * (2 + 2 * Math.random()) * (1/(vulnerability+1))
-//        newLoan = capacity * (5 + 8 * Math.random()) / 100
-//        loanDecay = 100* newLoan / capacity / (Math.random()+1)
         loanDecay = (vulnerability + 100) / (stability + 1) * (10 + Math.random() * 3);
-//        interests = 1+capacity/10000
         interests = 1 + vulnerability / 100 * Math.random();
-//        interestDecay = interests / 100
         interestDecay = (1+capacity/10000)/100 * (0.5 + Math.random()/4);
-//        returnDelay = 3000 * (1 + Math.random()*2)
         returnDelay = 3000 * (interestDecay*100 + vulnerability / 50 + Math.random()*2);
-//        decayDelay = 4000 * (1 + Math.random()*4)
         decayDelay = 3000 * (1 + stability/100 + Math.random());
-//        debt = 300
-        debt = capacity / (stability + 1) * (1 + Math.random() * 3);
-        debtDecay = 1000 / (stability+1)
-//        cutExp = 1
+        debt = capacity / (stability + 1) * (3 + Math.random() * 5);
+        debtDecay = 2000 / (stability+1)
         cutExp = 100/(stability+1);
 
-//        console.log(name);
-//        console.log("newLoan "+ newLoan);
-//        console.log("loanDecay "+ loanDecay + " vul " + vulnerability + " sta " + stability + " v/s " + (vulnerability / (stability + 1)));
-////        console.log("interests "+ interests);
-////        console.log("interestDecay "+ interestDecay);
-////        console.log("returnDelay "+ returnDelay);
-////        console.log("decayDelay "+ (decayDelay/1000) + " " + stability + " " + (1 + stability/100));
-//        console.log("debt "+ debt + " cap " + capacity + " sta " + stability);
-//        console.log("debtDecay "+ debtDecay);
-////        console.log("cutExp "+ cutExp);
-//        console.log("  ");
 
         budget = capacity
         rescued = false
@@ -323,6 +310,7 @@ Image {
         }
         incrementBudget( -cuts.returned );
         toReturn = 0;
+        root.substractLoanCount();
     }
 
     function acceptCut(cuts)
@@ -356,6 +344,15 @@ Image {
     {
         rescueDialog.currentCountry = country;
         rescueDialog.show();
+    }
+
+    function decayFromLoan()
+    {
+        if (!isPlayable)
+            return;
+        interests += interestDecay * (0.5 + Math.random() * 2);
+        newLoan += loanDecay * (1+Math.random());
+        debt += debtDecay * (1+Math.random());
     }
 
     function decay()

@@ -26,6 +26,9 @@ DialogBG {
     Connections {
         target: root
         onRestartAll: {
+            root.stopped = false;
+            root.loanCount = 0;
+            root.minLoan = 0;
             initialCountries = totalCountries;
             liveCountries = totalCountries;
             funds = 1000;
@@ -36,10 +39,12 @@ DialogBG {
         }
         onBeginGame: {
             initialCountries = root.mode == "full" ? totalCountries : eurozoneCountries;
+            funds = root.mode == "full" ? 200 : 1000;
             liveCountries = initialCountries;
             mainTheme.enqueue();
         }
         onFinishGame: {
+            root.stopped = true;
             mainTheme.fadeOut(1000);
         }
     }

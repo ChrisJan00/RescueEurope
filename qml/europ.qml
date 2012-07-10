@@ -16,7 +16,6 @@ Rectangle {
 
     property color textColor: "yellow"
 
-    ////////////////// PLAYER PROPERTIES
     property alias funds : panel.funds
     property alias currentCountry: panel.currentCountry
     property alias totalCountries: panel.totalCountries
@@ -35,7 +34,32 @@ Rectangle {
         eurozoneCountries = 17;
         restartAll();
     }
-    ////////////////////
+
+
+    // Loosing condition
+    property bool stopped: false
+    property int loanCount: 0
+    property int minLoan: 0
+
+    function addLoanCount() {
+        loanCount++;
+    }
+    function substractLoanCount()
+    {
+        loanCount--;
+        if (loanCount == 0) {
+            checkLoans();
+        }
+    }
+    signal computeMinLoan();
+    function checkLoans()
+    {
+        if (stopped || loanCount>0) return;
+        minLoan = funds + 1;
+        computeMinLoan();
+        if (minLoan > funds)
+            looseScreen.activate();
+    }
 
 
     Panel {
@@ -60,6 +84,10 @@ Rectangle {
 
     ReturnDialog {
         id: returnDialog
+    }
+
+    LooseScreen {
+        id: looseScreen
     }
 
     VictoryScreen {

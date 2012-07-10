@@ -16,9 +16,9 @@ Image {
         sourceHighlight: ":/pics/eurozone/austria_red.png"
 
         function restartCountry() {
-            capacity = 10000 * (1+Math.random()/2);
-            stability = 180;
-            vulnerability = 100;
+            capacity = 5000 * (1+Math.random()/2);
+            stability = 140;
+            vulnerability = 120;
             initInternal();
         }
 
@@ -108,7 +108,7 @@ Image {
 
         function restartCountry() {
             capacity = 20000 * (1+Math.random()/2);
-            stability = 160;
+            stability = 120;
             vulnerability = 80;
             initInternal();
         }
