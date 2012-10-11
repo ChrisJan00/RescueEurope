@@ -1,0 +1,31 @@
+Music:
+
+"Te Denum" by Marc-Antoine Charpentier is in the public domain. Used recording is assumed to be in the public domain as well, otherwise used under fair use terms for non-commercial use and parody.
+"If Euro A Rich Man" melody mix of "If I Were a Rich Man" created under fair use terms for non-commercial use and parody.
+"Ode to Joy" by Bethoven is in the public domain. Used recording is assumed to be in the public domain as well, otherwise used under fair use terms for non-commercial use and parody.
+
+
+Sound Effects:
+
+All sound effects available at http://www.freesound.org/
+"27 coins" by FreqMan (Creative Commons - Attribution)
+"shell" by NoiseCollector (Creative Commons - Attribution)
+"fireworks" by dobroide (Creative Commons - Attribution)
+"ekg" by guitarguy1985 (Creative Commons 0 - Public Domain)
+"explosion2" by steveygos93 (Creative Commons - Attribution)
+"Till With Bell" by Benboncan (Creative Commons - Attribution)
+
+
+Visuals:
+
+The european map is a modification of "Europa zemljevid.png", available at hhtp://commons.wikimedia.org
+The original was uploaded by user Andrejj under the license GNU FDL / CC-BY-SA
+The portraits were drawn by Kirill Krysov specifically for this game, they can be used under CC-BY-SA
+
+
+Code:
+
+Code written by Christiaan Janssen, available under GNU GPL V3.0 (See License.txt)
+Qt 4.8.1 from Digia Plc.
+SDL 1.2.5 and SDL mixer 1.2.5 from libsdl.org
+
